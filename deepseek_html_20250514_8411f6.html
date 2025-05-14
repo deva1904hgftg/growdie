@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Growtopia Private Server | Growdie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a5acd; /* Space purple */
+            --primary-dark: #4b0082;
+            --secondary: #00bfff; /* Bright blue */
+            --dark: #0a0a1a; /* Deep space blue */
+            --light: #e6f7ff; /* Starlight */
+            --gray: #a0a0c0;
+            --white: #ffffff;
+            --accent: #ff00ff; /* Nebula pink */
+            --star: rgba(255, 255, 255, 0.8);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(106, 90, 205, 0.15) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(0, 191, 255, 0.15) 0%, transparent 20%),
+                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Animated Background Elements */
+        .space-element {
+            position: fixed;
+            border-radius: 50%;
+            z-index: 1;
+            animation: float 15s infinite linear;
+            opacity: 0.7;
+        }
+
+        .space-element:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, var(--primary), transparent 70%);
+            top: -150px;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        .space-element:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--accent), transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation-delay: 5s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(50px, 50px);
+            }
+            50% {
+                transform: translate(0, 100px);
+            }
+            75% {
+                transform: translate(-50px, 50px);
+            }
+        }
+
+        /* Navbar */
+        header {
+            background-color: rgba(10, 10, 26, 0.9);
+            color: var(--white);
+            box-shadow: 0 2px 20px rgba(106, 90, 205, 0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(106, 90, 205, 0.3);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+        }
+
+        .logo i {
+            margin-right: 10px;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+                text-shadow: 0 0 5px var(--secondary);
+            }
+            to {
+                transform: scale(1.1);
+                text-shadow: 0 0 15px var(--accent);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 5px 0;
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--secondary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(10, 10, 26, 0.8), rgba(75, 0, 130, 0.8));
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(106, 90, 205, 0.3);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
+            opacity: 0.1;
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            font-family: 'Orbitron', sans-serif;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            animation: textGlow 3s infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+            }
+            to {
+                text-shadow: 0 0 20px var(--accent);
+            }
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--secondary), var(--primary));
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            transform: rotate(30deg);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.5);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 8px 25px rgba(255, 0, 255, 0.5);
+        }
+
+        /* Section */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 42px;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 18px;
+        }
+
+        /* Home Content */
+        .home-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .home-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .home-text h3 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .home-text h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--accent);
+            font-family: 'Orbitron', sans-serif;
+            animation: colorShift 5s infinite alternate;
+        }
+
+        @keyframes colorShift {
+            0% { color: var(--accent); }
+            50% { color: var(--secondary); }
+            100% { color: var(--primary); }
+        }
+
+        .home-text p {
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        .home-image {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+            position: relative;
+        }
+
+        .home-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.5;
+            animation: borderPulse 4s infinite ease-in-out;
+        }
+
+        @keyframes borderPulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.02); opacity: 0.8; }
+        }
+
+        .home-image img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.5s ease;
+            border: 1px solid rgba(106, 90, 205, 0.3);
+        }
+
+        .home-image:hover img {
+            transform: scale(1.03);
+        }
+
+        /* Host Section */
+        .host-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin-bottom: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .host-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                rgba(106, 90, 205, 0.1) 0%,
+                rgba(0, 191, 255, 0.05) 50%,
+                rgba(106, 90, 205, 0.1) 100%
+            );
+            z-index: -1;
+        }
+
+        .host-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
+        }
+
+        .host-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .host-info h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .host-info p {
+            margin-bottom: 10px;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        .host-ip {
+            font-family: 'Space Mono', monospace;
+            background-color: rgba(10, 10, 26, 0.5);
+            padding: 12px 15px;
+            border-radius: 8px;
+            display: block;
+            margin-top: 15px;
+            max-width: 100%;
+            overflow: hidden;
+            color: var(--accent);
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .host-ip:hover {
+            background-color: rgba(20, 20, 40, 0.8);
+            box-shadow: inset 0 0 15px rgba(0, 191, 255, 0.2);
+        }
+
+        .host-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Price Role Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 191, 255, 0.3);
+        }
+
+        .price-card:hover::before {
+            opacity: 1;
+        }
+
+        .price-card.popular {
+            border: 1px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.2);
+        }
+
+        .price-card.popular::before {
+            opacity: 1;
+        }
+
+        .popular-tag {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            color: var(--white);
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.3);
+            z-index: 2;
+        }
+
+        .price-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: var(--secondary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        .price {
+            font-size: 42px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--white);
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            display: inline-block;
+        }
+
+        .price::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .price span {
+            font-size: 16px;
+            color: var(--gray);
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .price-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(106, 90, 205, 0.2);
+            color: var(--light);
+            position: relative;
+        }
+
+        .price-features li::before {
+            content: '✓';
+            color: var(--secondary);
+            margin-right: 8px;
+            font-weight: bold;
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(10, 10, 26, 0.9);
+            color: var(--white);
+            padding: 70px 0 30px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(106, 90, 205, 0.3);
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
+            opacity: 0.05;
+            z-index: -1;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 22px;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 1px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .footer-column p {
+            color: var(--light);
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .footer-column ul li::before {
+            content: '›';
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+            opacity: 1;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            color: var(--white);
+            background: rgba(106, 90, 205, 0.3);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 18px;
+            border: 1px solid rgba(106, 90, 205, 0.5);
+        }
+
+        .social-links a:hover {
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(106, 90, 205, 0.3);
+            color: var(--gray);
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        .copy-notification {
+            position: fixed;
+            top: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 1;
+            box-shadow: 0 8px 25px rgba(106, 90, 205, 0.4);
+            z-index: 1000;
+            text-align: center;
+            animation: fadeOut 2s forwards;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(106, 90, 205, 0.5);
+        }
+
+        .copy-notification::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 0 0 8px 8px;
+            transform-origin: left;
+            animation: cooldown 2s linear forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; transform: translate(-50%, 0); }
+            80% { opacity: 1; transform: translate(-50%, 0); }
+            100% { opacity: 0; transform: translate(-50%, -20px); display: none; }
+        }
+
+        @keyframes cooldown {
+            0% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
+        }
+
+        /* Floating Animation */
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+            
+            .section-title h2 {
+                font-size: 36px;
+            }
+            
+            .price-card {
+                padding: 30px 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: rgba(10, 10, 26, 0.95);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.5s ease;
+                backdrop-filter: blur(10px);
+                z-index: 99;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 20px 0;
+            }
+
+            .hero {
+                padding: 100px 0;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .price {
+                font-size: 36px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .footer-column {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 14px;
+            }
+            
+            .host-card, .price-card {
+                padding: 25px 20px;
+            }
+            
+            .host-actions {
+                width: 100%;
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Space Background Elements -->
+    <div class="space-element"></div>
+    <div class="space-element"></div>
+
+    <!-- Navbar -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-rocket"></i>
+                    <span>Growdie Website</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#host">Host</a></li>
+                    <li><a href="#price">Price Role</a></li>
+                </ul>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Growdie Private Server</h1>
+            <p>Explore the universe of Growtopia with our premium private server. Experience 99.9% uptime, anti-lag technology, and DDoS protection. Discover 7000+ custom items and exclusive features in our high-performance galactic server.</p>
+            <a href="#host" class="btn btn-primary floating">Launch Now <i class="fas fa-arrow-down"></i></a>
+        </div>
+    </section>
+
+    <!-- Home Section -->
+    <section class="section">
+        <div class="container">
+            <div class="home-content">
+                <div class="home-text">
+                    <h3>Welcome to the Growdie Universe</h3>
+                    <p>Embark on an interstellar journey with our Growtopia Private Server. Experience premium gameplay with custom items and exclusive features, powered by our dedicated galactic servers for maximum performance.</p>
+                    <p>Whether you're exploring new worlds or building your own empire, our servers provide the stability and speed you need across the cosmos.</p>
+                    <p>With our space-grade infrastructure, enjoy minimal lag, warp-speed connections, and stellar uptime as you navigate the Growdie universe.</p>
+                    
+                    <h3>Growdie Creators</h3>
+                    <h4>@Agat, @Agung, @Miki, @Shadow</h4>
+                </div>
+                <div class="home-image">
+                    <img src="growdie.jpg" width="400" height="400" alt="Growtopia Private Server">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Host Section -->
+    <section class="section" id="host">
+        <div class="container">
+            <div class="section-title">
+                <h2>Growdie Host Link</h2>
+                <p>Connect to our Growdie servers using these Host link
+            </div>
+            
+            <div class="host-card">
+                <div class="host-info">
+                    <h3><i class="fab fa-windows"></i> Windows host</h3>
+                    <p>Establish connection with our main server using these IP hosts
+                    <div class="host-ip">
+                        159.223.41.154 www.growtopia1.com<br>
+                        159.223.41.154 www.growtopia2.com
+                    </div>
+                    <p><strong>Server status: <span style="color: var(--secondary); font-weight: 600;">ONLINE</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
+                </div>
+            </div>
+
+            <div class="host-card">
+                <div class="host-info">
+                    <h3><i class="fab fa-apple"></i> iOS host</h3>
+                    <p>Access our server from Apple devices with this Surge 5 link
+                    <div class="host-ip">
+                        https://ios.gtpshost.com/Growadsnewanjai
+                    </div>
+                    <p><strong>Server status: <span style="color: var(--secondary); font-weight: 600;">ONLINE</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
+                </div>
+            </div>
+
+            <div class="host-card">
+                <div class="host-info">
+                    <h3><i class="fab fa-android"></i> Android host</h3>
+                    <p>Connect your Android device with this Powertunnel link
+                    <div class="host-ip">
+                        https://gtpshost.com/Growadsnewanjai.txt
+                    </div>
+                    <p><strong>Server status: <span style="color: var(--secondary); font-weight: 600;">ONLINE</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
+                </div>
+            </div>
+            
+            <div class="host-card">
+                <div class="host-info">
+                    <h3><i class="fas fa-file-alt"></i> Download VHost</h3>
+                    <p>Download the complete host file to establish a direct wormhole connection to our servers.</p>
+                    <p>Includes all necessary connection protocols.</p>
+			<p>Host link for VHost user</p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
+                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Price Role Section -->
+    <section class="section" id="price">
+        <div class="container">
+            <div class="section-title">
+                <h2>Growdie Roles & Benefits</h2>
+                <p><strong>Starting from just Rp5.000!</strong></p>
+                <p>Unlock the full potential of the Growdie universe with these exclusive ranks and commands</p>
+            </div>
+            
+            <div class="pricing-grid">
+
+		<!-- Role 0 -->
+                <div class="price-card popular">
+                    <h3>Support</h3>
+                    <div class="price">Rp5.000 <span>/ $0.5</span></div>
+                    <ul class="price-features">
+                        <li>Supporter Access License</li>
+                        <li>Big Name title</li>
+                        <li>Low Budget</li>
+                        <li>Basic Experience</li>
+                        <li>Basic Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+                <!-- Role 1 -->
+                <div class="price-card popular">
+                    <h3>VIP</h3>
+                    <div class="price">Rp10.000 <span>/ $1</span></div>
+                    <ul class="price-features">
+                        <li>VIP Access License</li>
+                        <li>VIP Commands</li>
+                        <li>Auto Harvest Feature</li>
+                        <li>Search User Access</li>
+                        <li>Standard Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 1.5 -->
+                <div class="price-card popular">
+                    <h3>VIP+</h3>
+                    <div class="price">Rp15.000 <span>/ $1.5</span></div>
+                    <ul class="price-features">
+                        <li>VIP+ Access License</li>
+                        <li>VIP+ Commands</li>
+                        <li>Scan World Feature</li>
+                        <li>Search User Access</li>
+                        <li>VIP Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <!-- Role 2 -->
+                <div class="price-card popular">
+                    <h3>Moderator</h3>
+                    <div class="price">Rp25.000 <span>/ $2</span></div>
+                    <ul class="price-features">
+                        <li>Security Server Access</li>
+                        <li>Ghost Mode Feature</li>
+                        <li>Invisible Mode Feature</li>
+                        <li>Access to Nuked Worlds</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <!-- Role 3 (Popular) -->
+                <div class="price-card popular">
+                    <h3>Administrator</h3>
+                    <div class="price">Rp45.000 <span>/ $4</span></div>
+                    <ul class="price-features">
+                        <li>Check ID Items License</li>
+                        <li>Change Nickname Command</li>
+                        <li>Advanced Features</li>
+                        <li>Premium World Access</li>
+                        <li>Admin Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <!-- Role 4 -->
+                <div class="price-card popular">
+                    <h3>Developer</h3>
+                    <div class="price">Rp60.000 <span>/ $5</span></div>
+                    <ul class="price-features">
+                        <li>Advanced Permissions</li>
+                        <li>Global Message Access</li>
+                        <li>Special Commands</li>
+                        <li>Blacklist Player License</li>
+                        <li>Developer Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <!-- Role 5 -->
+                <div class="price-card popular">
+                    <h3>GOD</h3>
+                    <div class="price">Rp70.000 <span>/ $7</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Role Access</li>
+                        <li>Free Unlimited Items</li>
+                        <li>Free Purchase License</li>
+                        <li>World Management</li>
+                        <li>Full World Access</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+                
+                <!-- Role 6 -->
+                <div class="price-card popular">
+                    <h3>Legendary</h3>
+                    <div class="price">Rp90.000 <span>/ $9</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Restock</li>
+                        <li>Server Configuration</li>
+                        <li>Stars Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 7 -->
+                <div class="price-card popular">
+                    <h3>Royalboy</h3>
+                    <div class="price">Rp105.000 <span>/ $9</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Role Access</li>
+                        <li>Free Unlimited Items</li>
+			<li>Super Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 8 -->
+                <div class="price-card popular">
+                    <h3>Custom Role</h3>
+                    <div class="price">Rp120.000 <span>/ $11</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Restock</li>
+                        <li>Get Custom Role Name</li>
+                        <li>Ultra Priority Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 9 -->
+                <div class="price-card popular">
+                    <h3>Regressor</h3>
+                    <div class="price">Rp180.000 <span>/ $13</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Restock</li>
+                        <li>Get Custom Role Name</li>
+                        <li>Dedicated Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 10 -->
+                <div class="price-card popular">
+                    <h3>Akeong</h3>
+                    <div class="price">Rp220.000 <span>/ $15</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Restock</li>
+                        <li>Get Custom Role Name</li>
+                        <li>Exclusive Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 11 -->
+                <div class="price-card popular">
+                    <h3>Richboy</h3>
+                    <div class="price">Rp400.000 <span>/ $25</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Restock</li>
+                        <li>Get Custom Role Name</li>
+                        <li>Exclusive Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+		<!-- Role 12 -->
+                <div class="price-card popular">
+                    <h3>Hades</h3>
+                    <div class="price">Rp700.000 <span>/ $40</span></div>
+                    <ul class="price-features">
+                        <li>Unlimited Gems Access</li>
+                        <li>Unlimited Level Access</li>
+                        <li>Unlimited Restock</li>
+                        <li>Get Custom Role Name</li>
+                        <li>Exclusive Support</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+
+
+                <!-- Role 13 -->
+                <div class="price-card popular">
+                    <h3>Heaven</h3>
+                    <div class="price">Rp800.000 <span>/ $45</span></div>
+                    <ul class="price-features">
+                        <li>Full Server Control</li>
+                        <li>All Commands Unlocked</li>
+                        <li>Complete Permissions</li>
+			<li>All Unlimited</li>
+                        <li>Event Management</li>
+                        <li>Exclusive Slot</li>
+                    </ul>
+                    <a href="https://wa.me/6281353808853" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Growdie</h3>
+                    <p>Premium Private Server hosting with an enhanced Growtopia experience custom features and reliable performance with galactic-scale performance and exclusive features.</p>
+                    <div class="social-links">
+                        <a href="https://discord.gg/YrCRVeYcVv"><i class="fab fa-discord"></i></a>
+                        <a href="https://chat.whatsapp.com/IWZGGLW8zrxDHipGlyyoSB"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#host">Server Host</a></li>
+                        <li><a href="#price">Roles & Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="https://wa.me/6281353808853">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Growdie Galactic Server. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.querySelector('i').classList.toggle('fa-times');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Copy notification function
+        function showCopyNotification(message) {
+            const existing = document.querySelector('.copy-notification');
+            if (existing) existing.remove();
+
+            const notification = document.createElement('div');
+            notification.className = 'copy-notification';
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.style.animation = 'fadeOut 0.5s forwards';
+                setTimeout(() => notification.remove(), 500);
+            }, 1500);
+        }
+
+        // Copy host IP functionality
+        document.querySelectorAll('.btn-primary:not(.price-card .btn-primary)').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+        
+            const hostCard = this.closest('.host-card');
+            if (!hostCard) return;
+        
+            const hostIpElement = hostCard.querySelector('.host-ip');
+            if (!hostIpElement) return;
+        
+            let textToCopy = hostIpElement.textContent.trim();
+        
+            if (hostCard.querySelector('h3').textContent.includes('Windows')) {
+                    textToCopy = textToCopy.replace(/\s+/g, ' '); 
+            }
+        
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopyNotification('Successfully copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                showCopyNotification('Failed to copy. Please try again or copy manually.');
+            });
+        });
+    });
+
+
+        // Download host file functionality
+        document.querySelectorAll('.host-actions .btn-primary').forEach(button => {
+            if (button.textContent.includes('Download')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (button.dataset.downloading) return;
+                    button.dataset.downloading = 'true';
+
+                    const fileContent = `159.223.41.154 growtopia1.com
+159.223.41.154 growtopia2.com
+159.223.41.154 www.growtopia1.com
+159.223.41.154 www.growtopia2.com
+159.223.41.154 RvLnd.here`;
+                    const blob = new Blob([fileContent], { type: 'text/plain' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'growdienew.txt';
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(() => {
+                        document.body.removeChild(a);
+                        URL.revokeObjectURL(url);
+                        delete button.dataset.downloading;
+                        showCopyNotification('Host file downloaded successfully!');
+                    }, 100);
+                });
+            }
+        });
+
+        // Add floating animation to price cards on hover
+        document.querySelectorAll('.price-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-10px)';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Add starry background animation
+        function createStars() {
+            const starsContainer = document.createElement('div');
+            starsContainer.style.position = 'fixed';
+            starsContainer.style.top = '0';
+            starsContainer.style.left = '0';
+            starsContainer.style.width = '100%';
+            starsContainer.style.height = '100%';
+            starsContainer.style.pointerEvents = 'none';
+            starsContainer.style.zIndex = '1';
+            document.body.appendChild(starsContainer);
+
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.style.position = 'absolute';
+                star.style.width = `${Math.random() * 3}px`;
+                star.style.height = star.style.width;
+                star.style.backgroundColor = 'white';
+                star.style.borderRadius = '50%';
+                star.style.opacity = '0.8';
+                star.style.top = `${Math.random() * 100}%`;
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animation = `twinkle ${2 + Math.random() * 3}s infinite alternate`;
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Initialize stars
+        createStars();
+    </script>
+</body>
+</html>
