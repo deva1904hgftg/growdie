@@ -407,6 +407,7 @@
         .home-image {
             flex: 1;
             min-width: 300px;
+	    max-width: 400px;
             text-align: center;
             position: relative;
         }
@@ -441,6 +442,35 @@
         .home-image:hover img {
             transform: scale(1.03);
         }
+
+	.slider-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Tinggi tetap 400px */
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(106, 90, 205, 0.3);
+}
+
+.slider {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Pastikan gambar mengisi kotak tanpa distorsi */
+    border-radius: 10px;
+}
 
         /* Host Section */
         .host-card {
@@ -974,10 +1004,20 @@
                     <h4>@Agat, @Agung, @Miki, @Shadow</h4>
                 </div>
                 <div class="home-image">
-                    <img src="growdie.jpg" width="400" height="400" alt="Growtopia Private Server">
-                </div>
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="growdie.jpg" alt="Growtopia Private Server 1">
+            </div>
+            <div class="slide">
+                <img src="growdie2.jpg" alt="Growtopia Private Server 2">
+            </div>
+            <div class="slide">
+                <img src="growdie3.jpg" alt="Growtopia Private Server 3">
             </div>
         </div>
+    </div>
+</div>
     </section>
 
     <!-- Host Section -->
@@ -1320,6 +1360,25 @@
             navLinks.classList.toggle('active');
             menuToggle.querySelector('i').classList.toggle('fa-times');
         });
+
+	// Slider functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const images = document.querySelectorAll('.slider img');
+    let currentIndex = 0;
+    const slideCount = images.length;
+    
+    if (slider && slideCount > 1) {
+        // Set initial position
+        slider.style.width = `${slideCount * 100}%`;
+        
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slideCount;
+            slider.style.transform = `translateX(-${currentIndex * (100 / slideCount)}%)`;
+        }, 5000);
+    }
+});
 
         // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
