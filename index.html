@@ -454,8 +454,23 @@
 
 .slider-container {
     width: 100%;
-    height: 500px; /* Sesuaikan tinggi banner */
+    height: 0;
+    padding-bottom: 30%; /* Rasio aspek 3.33:1 */
     overflow: hidden;
+    position: relative;
+}
+
+.slider {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.5s ease;
+    position: absolute;
+}
+
+.slide {
+    width: 33.333%;
+    height: 100%;
 }
 
 .slide img {
@@ -877,7 +892,10 @@
             .price-card {
                 padding: 30px 20px;
             }
-        }
+	    .slider-container {
+        padding-bottom: 40%;
+    }
+}
 
         @media (max-width: 768px) {
             .menu-toggle {
@@ -923,6 +941,10 @@
                 font-size: 30px;
             }
 
+	    .slider-container {
+        padding-bottom: 60%; 
+    }
+
             .price {
                 font-size: 36px;
             }
@@ -955,6 +977,8 @@
                 width: 100%;
                 flex-direction: row;
             }
+	    padding-bottom: 80%;
+    }
         }
     </style>
 </head>
@@ -996,6 +1020,21 @@
     <section class="section">
         <div class="container">
             <div class="home-content">
+		<div class="banner-container">
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide">
+                <img src="growdie-banner.png" alt="Growtopia Private Server 1">
+            </div>
+            <div class="slide">
+                <img src="banner.png" alt="Growtopia Private Server 2">
+            </div>
+            <div class="slide">
+                <img src="growdie3.jpg" alt="Growtopia Private Server 3">
+            </div>
+        </div>
+    </div>
+</div>
                 <div class="home-text">
                     <h3>Welcome to the Growdie Universe</h3>
                     <p>Embark on an interstellar journey with our Growtopia Private Server. Experience premium gameplay with custom items and exclusive features, powered by our dedicated galactic servers for maximum performance.</p>
@@ -1005,21 +1044,6 @@
                     <h3>Growdie Creators</h3>
                     <h4>@Agat, @Agung, @Miki, @Shadow</h4>
                 </div>
-                <div class="banner-container">
-            <div class="slider-container">
-                <div class="slider">
-                    <div class="slide">
-                        <img src="growdie-banner.png" alt="Growtopia Private Server 1">
-                    </div>
-                    <div class="slide">
-                        <img src="banner.png" alt="Growtopia Private Server 2">
-                    </div>
-                    <div class="slide">
-                        <img src="growdie3.jpg" alt="Growtopia Private Server 3">
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Host Section -->
@@ -1366,14 +1390,11 @@
 	// Slider functionality
 document.addEventListener('DOMContentLoaded', function() {
     const slider = document.querySelector('.slider');
-    const images = document.querySelectorAll('.slider img');
+    const slides = document.querySelectorAll('.slide');
     let currentIndex = 0;
-    const slideCount = images.length;
+    const slideCount = slides.length;
     
     if (slider && slideCount > 1) {
-        // Set initial position
-        slider.style.width = `${slideCount * 100}%`;
-        
         // Auto slide every 5 seconds
         setInterval(() => {
             currentIndex = (currentIndex + 1) % slideCount;
