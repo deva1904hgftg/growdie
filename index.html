@@ -1060,7 +1060,7 @@
                     <p>With our space-grade infrastructure, enjoy minimal lag, warp-speed connections, and stellar uptime as you navigate the Growdie universe.</p>
                     
                     <h3>Growdie Creators</h3>
-                    <h4>@Agat, @Agung, @Miki, @Shadow</h4>
+                    <h4>@Agat, @Repp, @Miki, @Deva</h4>
                 </div>
     </section>
 
@@ -1480,7 +1480,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         
             navigator.clipboard.writeText(textToCopy).then(() => {
-                showCopyNotification('Successfully copied to clipboard!');
+                showCopyNotification('Copied to clipboard!');
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
                 showCopyNotification('Failed to copy. Please try again or copy manually.');
@@ -1513,7 +1513,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
                         delete button.dataset.downloading;
-                        showCopyNotification('Host file downloaded successfully!');
+                        showCopyNotification('File Downloaded!');
                     }, 100);
                 });
             }
