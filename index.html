@@ -452,6 +452,11 @@
     border: 1px solid rgba(106, 90, 205, 0.3);
 }
 
+.banner-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0, 191, 255, 0.4);
+}
+
 .slider-container {
     width: 100%;
     height: 0;
@@ -487,6 +492,67 @@
 .home-text {
     width: 100%;
     min-width: 100%;
+}
+
+	    /* Testimonial Styles */
+.testimonial-section {
+  padding: 80px 0;
+  background: rgba(10, 10, 26, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.testimonial-card {
+  background: rgba(20, 20, 40, 0.7);
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(106, 90, 205, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.testimonial-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+  border: 2px solid var(--secondary);
+}
+
+.testimonial-user h4 {
+  font-size: 18px;
+  color: var(--white);
+  margin-bottom: 5px;
+}
+
+.testimonial-stars {
+  color: gold;
+  font-size: 14px;
+}
+
+.testimonial-content {
+  font-style: italic;
+  color: var(--light);
+  line-height: 1.7;
 }
 
         /* Host Section */
@@ -1131,6 +1197,77 @@
                 </div>
             </div>
         </div>
+
+	    <!-- Testimonial Section -->
+<section class="testimonial-section">
+  <div class="container">
+    <div class="section-title">
+      <h2>What Players Say</h2>
+      <p>Hear from our community of galactic explorers</p>
+    </div>
+    
+    <div class="testimonial-grid">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Player" class="testimonial-avatar">
+          <div class="testimonial-user">
+            <h4>GalaxyExplorer</h4>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="testimonial-content">
+          "Growdie PS is by far the best private server I've played! The custom items are amazing and the server never lags. The admin team is super responsive too!"
+        </p>
+      </div>
+      
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Player" class="testimonial-avatar">
+          <div class="testimonial-user">
+            <h4>StarryNight</h4>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+        </div>
+        <p class="testimonial-content">
+          "I've been playing on Growdie for 6 months now and it keeps getting better. The community is great and the custom features make the game so much more fun!"
+        </p>
+      </div>
+      
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-header">
+          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Player" class="testimonial-avatar">
+          <div class="testimonial-user">
+            <h4>CosmicBuilder</h4>
+            <div class="testimonial-stars">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+        </div>
+        <p class="testimonial-content">
+          "The server performance is incredible - no lag even during big events. The VIP role is worth every penny with all the extra commands and features!"
+        </p>
+      </div>
+    </div>
+  </div>
     </section>
 
     <!-- Price Role Section -->
