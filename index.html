@@ -3,175 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Growtopia Private Server | Growdie</title>
-<!-- Favicon dasar -->
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<!-- Untuk browser modern (PNG/SVG) -->
-<link rel="icon" href="/favicon.png" type="image/png">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<!-- Apple Touch Icon -->
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<!-- Web Manifest (PWA) -->
-<link rel="manifest" href="/site.webmanifest">
+    <title>Growdie - Premium Growtopia Private Server</title>
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Fonts & Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #6a5acd; /* Space purple */
-            --primary-dark: #4b0082;
-            --secondary: #00bfff; /* Bright blue */
-            --dark: #0a0a1a; /* Deep space blue */
-            --light: #e6f7ff; /* Starlight */
-            --gray: #a0a0c0;
-            --white: #ffffff;
-            --accent: #ff00ff; /* Nebula pink */
-            --star: rgba(255, 255, 255, 0.8);
+            --primary: #4a6bff; /* Modern blue */
+            --primary-dark: #3a56cc;
+            --secondary: #00c9a7; /* Teal */
+            --accent: #845ec2; /* Purple */
+            --dark: #0f172a; /* Deep blue-gray */
+            --darker: #0a101f;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --light-gray: #e2e8f0;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --card-bg: rgba(15, 23, 42, 0.7);
+            --card-border: rgba(148, 163, 184, 0.1);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Orbitron', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Grotesk:wght@300;400;500;700&display=swap');
 
         body {
             background-color: var(--dark);
             color: var(--light);
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            width: 100%;
             overflow-x: hidden;
             position: relative;
             background-image: 
-                radial-gradient(circle at 20% 30%, rgba(106, 90, 205, 0.15) 0%, transparent 20%),
-                radial-gradient(circle at 80% 70%, rgba(0, 191, 255, 0.15) 0%, transparent 20%),
-                url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
-            font-family: 'Space Grotesk', sans-serif;
+                radial-gradient(circle at 20% 30%, rgba(74, 107, 255, 0.1) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(0, 201, 167, 0.1) 0%, transparent 25%),
+                linear-gradient(to bottom, var(--darker), var(--dark));
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
         .container {
             max-width: 1200px;
             width: 100%;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
             position: relative;
             z-index: 2;
         }
 
-        /* Animated Background Elements */
-        .space-element {
-            position: fixed;
-            border-radius: 50%;
-            z-index: 1;
-            animation: float 15s infinite linear;
-            opacity: 0.7;
-        }
-
-        .space-element:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, var(--primary), transparent 70%);
-            top: -150px;
-            left: -150px;
-            animation-delay: 0s;
-        }
-
-        .space-element:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, var(--accent), transparent 70%);
-            bottom: -100px;
-            right: -100px;
-            animation-delay: 5s;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-            25% {
-                transform: translate(50px, 50px);
-            }
-            50% {
-                transform: translate(0, 100px);
-            }
-            75% {
-                transform: translate(-50px, 50px);
-            }
+        section {
+            padding: 80px 0;
+            position: relative;
         }
 
         /* Navbar */
         header {
-            background-color: rgba(10, 10, 26, 0.9);
+            background-color: rgba(15, 23, 42, 0.95);
             color: var(--white);
-            box-shadow: 0 2px 20px rgba(106, 90, 205, 0.3);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
             position: sticky;
             top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(106, 90, 205, 0.3);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid var(--card-border);
         }
 
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            padding: 18px 0;
+            position: relative;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 22px;
             font-weight: 700;
             display: flex;
             align-items: center;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 191, 255, 0.3);
+            color: var(--light);
+            text-decoration: none;
         }
 
-        .logo i {
+        .logo-icon {
+            color: var(--primary);
             margin-right: 10px;
-            animation: pulse 2s infinite alternate;
+            font-size: 24px;
+            transition: var(--transition);
         }
 
-        @keyframes pulse {
-            from {
-                transform: scale(1);
-                text-shadow: 0 0 5px var(--secondary);
-            }
-            to {
-                transform: scale(1.1);
-                text-shadow: 0 0 15px var(--accent);
-            }
+        .logo:hover .logo-icon {
+            color: var(--secondary);
+            transform: rotate(-15deg);
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-        }
-
-        .nav-links li {
-            margin-left: 30px;
-            position: relative;
+            gap: 25px;
         }
 
         .nav-links a {
             color: var(--light);
             text-decoration: none;
             font-weight: 500;
-            transition: all 0.3s ease;
-            padding: 5px 0;
+            transition: var(--transition);
             position: relative;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
+            padding: 5px 0;
+            font-size: 15px;
         }
 
         .nav-links a:hover {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .nav-links a::after {
@@ -181,8 +139,8 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: var(--transition);
         }
 
         .nav-links a:hover::after {
@@ -192,25 +150,23 @@
         .menu-toggle {
             display: none;
             cursor: pointer;
-            font-size: 24px;
+            font-size: 22px;
             color: var(--light);
-            transition: all 0.3s ease;
+            transition: var(--transition);
+            z-index: 1001;
         }
 
         .menu-toggle:hover {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(10, 10, 26, 0.8), rgba(75, 0, 130, 0.8));
-            color: var(--white);
-            padding: 120px 0;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(58, 86, 204, 0.8));
+            padding: 120px 0 100px;
             text-align: center;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px);
-            border-bottom: 1px solid rgba(106, 90, 205, 0.3);
         }
 
         .hero::before {
@@ -220,79 +176,69 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
-            opacity: 0.1;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(74, 107, 255, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 80% 70%, rgba(0, 201, 167, 0.1) 0%, transparent 30%);
             z-index: -1;
         }
 
         .hero h1 {
-            font-size: 52px;
+            font-size: 48px;
             margin-bottom: 20px;
-            font-family: 'Orbitron', sans-serif;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
-            animation: textGlow 3s infinite alternate;
-        }
-
-        @keyframes textGlow {
-            from {
-                text-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-            }
-            to {
-                text-shadow: 0 0 20px var(--accent);
-            }
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 20px;
-            max-width: 800px;
+            font-size: 18px;
+            max-width: 700px;
             margin: 0 auto 30px;
-            color: var(--light);
-            opacity: 0.9;
+            color: var(--light-gray);
         }
 
+        /* Buttons */
         .btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: var(--light);
+            padding: 12px 28px;
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
+            transition: var(--transition);
             border: none;
             cursor: pointer;
+            font-size: 15px;
+            box-shadow: 0 4px 15px rgba(74, 107, 255, 0.3);
             position: relative;
             overflow: hidden;
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .btn::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
             background: linear-gradient(
-                to bottom right,
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.1) 50%,
-                rgba(255, 255, 255, 0) 100%
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
             );
-            transform: rotate(30deg);
-            transition: all 0.5s ease;
+            transition: var(--transition);
         }
 
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(74, 107, 255, 0.4);
         }
 
         .btn:hover::before {
@@ -300,44 +246,36 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.3);
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            box-shadow: 0 4px 15px rgba(0, 201, 167, 0.3);
         }
 
         .btn-primary:hover {
-            box-shadow: 0 8px 25px rgba(255, 0, 255, 0.5);
+            box-shadow: 0 8px 25px rgba(0, 201, 167, 0.4);
         }
 
-        /* Section */
-        .section {
-            padding: 100px 0;
-            position: relative;
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
         }
 
-        .section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
-            opacity: 0.05;
-            z-index: -1;
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
         }
 
+        /* Section Titles */
         .section-title {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .section-title h2 {
-            font-size: 42px;
-            color: var(--secondary);
+            font-size: 36px;
+            color: var(--light);
             margin-bottom: 15px;
-            font-family: 'Orbitron', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             position: relative;
             display: inline-block;
         }
@@ -348,9 +286,9 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 80px;
+            width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 3px;
         }
 
@@ -358,367 +296,307 @@
             color: var(--gray);
             max-width: 700px;
             margin: 0 auto;
-            font-size: 18px;
+            font-size: 16px;
         }
 
-        /* Home Content */
-        .home-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            gap: 40px;
-        }
-
-        .home-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .home-text h3 {
-            font-size: 32px;
-            margin-bottom: 20px;
-            color: var(--secondary);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .home-text h4 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: var(--accent);
-            font-family: 'Orbitron', sans-serif;
-            animation: colorShift 5s infinite alternate;
-        }
-
-        @keyframes colorShift {
-            0% { color: var(--accent); }
-            50% { color: var(--secondary); }
-            100% { color: var(--primary); }
-        }
-
-        .home-text p {
-            margin-bottom: 20px;
-            line-height: 1.8;
-            color: var(--light);
-            opacity: 0.9;
-        }
-
-        .home-image {
-            flex: 1;
-            min-width: 300px;
-	    max-width: 400px;
-            text-align: center;
-            position: relative;
-        }
-
-        .home-image::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            right: -20px;
-            bottom: -20px;
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            z-index: -1;
-            opacity: 0.5;
-            animation: borderPulse 4s infinite ease-in-out;
-        }
-
-        @keyframes borderPulse {
-            0%, 100% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.02); opacity: 0.8; }
-        }
-
-        .home-image img {
-            max-width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.5s ease;
-            border: 1px solid rgba(106, 90, 205, 0.3);
-        }
-
-        .home-image:hover img {
-            transform: scale(1.03);
-        }
-
-	.banner-container {
-    width: 100%;
-    margin-bottom: 40px;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(106, 90, 205, 0.3);
-    transition: all 0.4s ease;
-}
-
-.banner-container:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(0, 191, 255, 0.4);
-}
-
-.slider-container {
-    width: 100%;
-    height: 0;
-    padding-bottom: 40%; /* Rasio aspek 3.33:1 */
-    overflow: hidden;
-    position: relative;
-}
-
-.slider {
-    display: flex;
-    width: 900%;
-    height: 100%;
-    transition: transform 0.5s ease;
-    position: absolute;
-}
-
-.slide {
-    width: 11.111%;
-    height: 100%;
-}
-
-.slide img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Hapus home-image yang lama dari home-content */
-.home-content {
-    display: block; /* Ubah dari flex ke block */
-}
-
-.home-text {
-    width: 100%;
-    min-width: 100%;
-}
-
-	    /* Testimonial Styles */
-.testimonial-section {
-  padding: 80px 0;
-  background: rgba(10, 10, 26, 0.7);
-  backdrop-filter: blur(10px);
-}
-
-.testimonial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 30px;
-  margin-top: 40px;
-}
-
-.testimonial-card {
-  background: rgba(20, 20, 40, 0.7);
-  border-radius: 15px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(106, 90, 205, 0.3);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
-}
-
-.testimonial-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
-}
-
-.testimonial-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.testimonial-avatar {
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-right: 15px;
-  border: 2px solid var(--secondary);
-}
-
-.testimonial-user h4 {
-  font-size: 18px;
-  color: var(--white);
-  margin-bottom: 5px;
-}
-
-.testimonial-stars {
-  color: gold;
-  font-size: 14px;
-}
-
-.testimonial-content {
-  font-style: italic;
-  color: var(--light);
-  line-height: 1.7;
-}
-
-        /* Host Section */
-        .host-card {
-            background: rgba(20, 20, 40, 0.7);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 30px;
-            margin-bottom: 30px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 30px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(106, 90, 205, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
+        /* Slider Styles */
+        .banner-container {
+            width: 100%;
+            margin-bottom: 40px;
+            border-radius: 12px;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
         }
 
-        .host-card::before {
-            content: '';
+        .banner-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(74, 107, 255, 0.2);
+        }
+
+        .slider-container {
+            width: 100%;
+            height: 0;
+            padding-bottom: 40%;
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px;
+        }
+
+        .slider {
+            display: flex;
+            width: 900%;
+            height: 100%;
+            transition: transform 0.7s ease;
             position: absolute;
-            top: 0;
-            left: 0;
+        }
+
+        .slide {
+            width: 11.111%;
+    	    height: 100%;
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .slide img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                135deg,
-                rgba(106, 90, 205, 0.1) 0%,
-                rgba(0, 191, 255, 0.05) 50%,
-                rgba(106, 90, 205, 0.1) 100%
-            );
-            z-index: -1;
+            object-fit: cover;
+        }
+
+        /* Content Section */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-text {
+            margin-bottom: 30px;
+        }
+
+        .content-text h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: var(--light);
+        }
+
+        .content-text p {
+            margin-bottom: 15px;
+            color: var(--gray);
+            line-height: 1.7;
+        }
+
+        .creators {
+            margin-top: 30px;
+        }
+
+        .creators h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        /* Host Cards */
+        .host-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .host-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
         .host-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 191, 255, 0.2);
+            box-shadow: 0 12px 30px rgba(74, 107, 255, 0.15);
+            border-color: rgba(74, 107, 255, 0.3);
         }
 
-        .host-info {
-            flex: 1;
-            min-width: 250px;
+        .host-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .host-icon {
+            font-size: 24px;
+            margin-right: 12px;
+            color: var(--primary);
         }
 
         .host-info h3 {
-            font-size: 26px;
-            margin-bottom: 15px;
-            color: var(--secondary);
-            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            margin-bottom: 5px;
+            color: var(--light);
         }
 
-        .host-info p {
-            margin-bottom: 10px;
-            color: var(--light);
-            opacity: 0.9;
+        .host-description {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 15px;
+            flex-grow: 1;
         }
 
         .host-ip {
-            font-family: 'Space Mono', monospace;
-            background-color: rgba(10, 10, 26, 0.5);
-            padding: 12px 15px;
-            border-radius: 8px;
-            display: block;
-            margin-top: 15px;
-            max-width: 100%;
-            overflow: hidden;
-            color: var(--accent);
-            border: 1px solid rgba(106, 90, 205, 0.3);
-            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            font-family: 'Courier New', monospace;
+            background-color: rgba(10, 16, 31, 0.5);
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            color: var(--light);
+            border: 1px solid var(--card-border);
+            font-size: 14px;
+            word-break: break-all;
+            transition: var(--transition);
         }
 
         .host-ip:hover {
-            background-color: rgba(20, 20, 40, 0.8);
-            box-shadow: inset 0 0 15px rgba(0, 191, 255, 0.2);
+            background-color: rgba(15, 23, 42, 0.8);
+            border-color: var(--primary);
+        }
+
+        .host-status {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--success);
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
 
         .host-actions {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
+            gap: 12px;
+            margin-top: auto;
         }
 
-        /* Price Role Section */
-        .pricing-grid {
+        .host-actions .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        /* Testimonials */
+        .testimonial-section {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(8px);
+        }
+
+        .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            gap: 25px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(74, 107, 255, 0.15);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid var(--primary);
+        }
+
+        .testimonial-user h4 {
+            font-size: 16px;
+            color: var(--light);
+            margin-bottom: 5px;
+        }
+
+        .testimonial-stars {
+            color: var(--warning);
+            font-size: 14px;
+        }
+
+        .testimonial-content {
+            font-style: italic;
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
         .price-card {
-            background: rgba(20, 20, 40, 0.7);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            padding: 40px 30px;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
             text-align: center;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(106, 90, 205, 0.3);
+            transition: var(--transition);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--card-border);
             position: relative;
             overflow: hidden;
         }
 
-        .price-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
         .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 191, 255, 0.3);
-        }
-
-        .price-card:hover::before {
-            opacity: 1;
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(74, 107, 255, 0.15);
+            border-color: var(--primary);
         }
 
         .price-card.popular {
             border: 1px solid var(--accent);
-            box-shadow: 0 10px 30px rgba(255, 0, 255, 0.2);
-        }
-
-        .price-card.popular::before {
-            opacity: 1;
+            box-shadow: 0 8px 25px rgba(132, 94, 194, 0.2);
         }
 
         .popular-tag {
             position: absolute;
-            top: -15px;
-            right: 20px;
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            color: var(--white);
-            padding: 5px 15px;
-            border-radius: 50px;
-            font-size: 14px;
+            top: 15px;
+            right: -30px;
+            background: var(--accent);
+            color: var(--light);
+            padding: 4px 30px;
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.3);
-            z-index: 2;
+            transform: rotate(45deg);
+            transform-origin: center;
+            width: 120px;
+            text-align: center;
         }
 
         .price-card h3 {
-            font-size: 26px;
+            font-size: 22px;
             margin-bottom: 15px;
-            color: var(--secondary);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
+            color: var(--light);
         }
 
         .price {
-            font-size: 42px;
+            font-size: 36px;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--white);
-            font-family: 'Orbitron', sans-serif;
+            color: var(--light);
             position: relative;
             display: inline-block;
         }
@@ -729,33 +607,38 @@
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 60px;
+            width: 50px;
             height: 2px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
 
         .price span {
             font-size: 16px;
             color: var(--gray);
+            font-weight: normal;
         }
 
         .price-features {
             list-style: none;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
+            text-align: left;
         }
 
         .price-features li {
-            padding: 12px 0;
-            border-bottom: 1px solid rgba(106, 90, 205, 0.2);
-            color: var(--light);
+            padding: 10px 0;
+            border-bottom: 1px solid var(--card-border);
+            color: var(--gray);
             position: relative;
+            padding-left: 25px;
+            font-size: 14px;
         }
 
         .price-features li::before {
             content: '✓';
             color: var(--secondary);
-            margin-right: 8px;
+            position: absolute;
+            left: 0;
             font-weight: bold;
         }
 
@@ -763,47 +646,91 @@
             border-bottom: none;
         }
 
+.payment-section {
+        background: rgba(15, 23, 42, 0.7);
+        backdrop-filter: blur(8px);
+    }
+    
+    .payment-slider {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+    
+    .payment-track {
+        display: flex;
+        gap: 20px;
+        animation: scroll 30s linear infinite;
+        width: max-content;
+	will-change: transform;
+    }
+    
+    .payment-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+	flex-shrink: 0;
+        justify-content: center;
+        background: var(--card-bg);
+        border-radius: 8px;
+        padding: 15px;
+        min-width: 120px;
+        border: 1px solid var(--card-border);
+        transition: var(--transition);
+    }
+    
+    .payment-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(74, 107, 255, 0.2);
+        border-color: var(--primary);
+    }
+    
+    .payment-item img {
+        width: 40px;
+        height: 40px;
+        object-fit: contain;
+        margin-bottom: 10px;
+        filter: grayscale(30%);
+        transition: var(--transition);
+    }
+    
+    .payment-item:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+    
+    .payment-item span {
+        font-size: 12px;
+        color: var(--gray);
+        font-weight: 500;
+    }
+    
+    @keyframes scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(calc(-250px * 6.5)); }
+    }
+
         /* Footer */
         footer {
-            background: rgba(10, 10, 26, 0.9);
-            color: var(--white);
-            padding: 70px 0 30px;
+            background: rgba(15, 23, 42, 0.95);
+            color: var(--light);
+            padding: 60px 0 30px;
             position: relative;
-            backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(106, 90, 205, 0.3);
-        }
-
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="0.5" fill="white" opacity="0.8"/><circle cx="30" cy="70" r="0.8" fill="white" opacity="0.8"/><circle cx="80" cy="20" r="0.3" fill="white" opacity="0.8"/><circle cx="60" cy="50" r="0.6" fill="white" opacity="0.8"/><circle cx="90" cy="90" r="0.4" fill="white" opacity="0.8"/></svg>');
-            opacity: 0.05;
-            z-index: -1;
+            backdrop-filter: blur(8px);
+            border-top: 1px solid var(--card-border);
         }
 
         .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
 
-        .footer-column {
-            flex: 1;
-            min-width: 200px;
-        }
-
         .footer-column h3 {
-            font-size: 22px;
-            margin-bottom: 25px;
-            color: var(--secondary);
-            font-family: 'Orbitron', sans-serif;
-            letter-spacing: 1px;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: var(--light);
             position: relative;
             display: inline-block;
         }
@@ -811,105 +738,104 @@
         .footer-column h3::after {
             content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -8px;
             left: 0;
-            width: 50px;
+            width: 40px;
             height: 2px;
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
             border-radius: 2px;
         }
 
         .footer-column p {
-            color: var(--light);
-            opacity: 0.8;
-            line-height: 1.8;
+            color: var(--gray);
+            line-height: 1.7;
             margin-bottom: 20px;
+            font-size: 14px;
         }
 
-        .footer-column ul {
+        .footer-links {
             list-style: none;
         }
 
-        .footer-column ul li {
+        .footer-links li {
             margin-bottom: 12px;
-            position: relative;
-            padding-left: 20px;
         }
 
-        .footer-column ul li::before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--secondary);
-            font-weight: bold;
-        }
-
-        .footer-column ul li a {
-            color: var(--light);
+        .footer-links a {
+            color: var(--gray);
             text-decoration: none;
-            transition: all 0.3s ease;
-            opacity: 0.8;
+            transition: var(--transition);
+            font-size: 14px;
+            display: inline-block;
         }
 
-        .footer-column ul li a:hover {
-            color: var(--secondary);
-            padding-left: 5px;
-            opacity: 1;
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(5px);
         }
 
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .social-links a {
-            color: var(--white);
-            background: rgba(106, 90, 205, 0.3);
-            width: 45px;
-            height: 45px;
+            color: var(--light);
+            background: rgba(74, 107, 255, 0.2);
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 18px;
-            border: 1px solid rgba(106, 90, 205, 0.5);
+            transition: var(--transition);
+            font-size: 16px;
+            border: 1px solid var(--card-border);
         }
 
         .social-links a:hover {
-            background: linear-gradient(135deg, var(--secondary), var(--accent));
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(74, 107, 255, 0.3);
         }
 
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(106, 90, 205, 0.3);
+            border-top: 1px solid var(--card-border);
             color: var(--gray);
             font-size: 14px;
-            opacity: 0.7;
         }
 
         /* Animations */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
         .copy-notification {
             position: fixed;
             top: 70px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: #fff;
-            padding: 15px 30px;
+            background: var(--primary);
+            color: var(--light);
+            padding: 12px 25px;
             border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            opacity: 1;
-            box-shadow: 0 8px 25px rgba(106, 90, 205, 0.4);
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 5px 20px rgba(74, 107, 255, 0.3);
             z-index: 1000;
-            text-align: center;
-            animation: fadeOut 2s forwards;
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(106, 90, 205, 0.5);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
         .copy-notification::after {
@@ -923,6 +849,11 @@
             border-radius: 0 0 8px 8px;
             transform-origin: left;
             animation: cooldown 2s linear forwards;
+        }
+
+
+        .copy-notification.show {
+            opacity: 1;
         }
 
         @keyframes fadeOut {
@@ -946,23 +877,26 @@
             animation: floating 3s ease-in-out infinite;
         }
 
-        /* Responsive */
+
+        /* Responsive Design */
         @media (max-width: 992px) {
             .hero h1 {
                 font-size: 42px;
             }
             
             .section-title h2 {
-                font-size: 36px;
+                font-size: 32px;
             }
             
             .price-card {
-                padding: 30px 20px;
+                padding: 25px 20px;
             }
+
 	    .slider-container {
-        padding-bottom: 40%;
-    }
-}
+       	 	padding-bottom: 30%;
+	    }
+
+        }
 
         @media (max-width: 768px) {
             .menu-toggle {
@@ -971,29 +905,35 @@
 
             .nav-links {
                 position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background: rgba(10, 10, 26, 0.95);
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                background: var(--darker);
                 flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: all 0.5s ease;
-                backdrop-filter: blur(10px);
-                z-index: 99;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 80px 30px;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+                z-index: 1000;
             }
 
             .nav-links.active {
-                left: 0;
+                right: 0;
             }
 
             .nav-links li {
-                margin: 20px 0;
+                margin: 15px 0;
+                width: 100%;
+            }
+
+            .nav-links a {
+                font-size: 16px;
             }
 
             .hero {
-                padding: 100px 0;
+                padding: 100px 0 80px;
             }
 
             .hero h1 {
@@ -1001,71 +941,63 @@
             }
 
             .hero p {
-                font-size: 18px;
+                font-size: 16px;
             }
 
-            .section-title h2 {
-                font-size: 30px;
+            .slider-container {
+                padding-bottom: 60%;
+            }
+
+            .host-actions {
+                flex-direction: column;
+            }
+
+            .host-actions .btn {
+                width: 100%;
             }
 
 	    .slider-container {
-        padding-bottom: 50%; 
-    }
-
-            .price {
-                font-size: 36px;
+        	padding-bottom: 50%; 
             }
-            
-            .footer-content {
-                flex-direction: column;
-                gap: 30px;
-            }
-            
-            .footer-column {
-                min-width: 100%;
-            }
-        }
+	}
 
         @media (max-width: 576px) {
             .hero h1 {
                 font-size: 32px;
             }
             
+            .section-title h2 {
+                font-size: 28px;
+            }
+            
             .btn {
-                padding: 10px 25px;
+                padding: 10px 20px;
                 font-size: 14px;
             }
             
-            .host-card, .price-card {
-                padding: 25px 20px;
+            .slider-container {
+                padding-bottom: 80%;
             }
-            
-            .host-actions {
-                width: 100%;
-                flex-direction: row;
+
+            .price {
+                font-size: 32px;
             }
-	    padding-bottom: 80%;
-    }
         }
     </style>
 </head>
 <body>
-    <!-- Space Background Elements -->
-    <div class="space-element"></div>
-    <div class="space-element"></div>
-
     <!-- Navbar -->
     <header>
         <div class="container">
             <nav>
-                <div class="logo">
-                    <i class="fas fa-rocket"></i>
+                <a href="#" class="logo">
+                    <i class="fas fa-server logo-icon"></i>
                     <span>Growdie Website</span>
-                </div>
+                </a>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#host">Host</a></li>
-                    <li><a href="#price">Price Role</a></li>
+                    <li><a href="#host">Server Host</a></li>
+                    <li><a href="#price">Roles & Pricing</a></li>
                 </ul>
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
@@ -1077,20 +1009,19 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Growdie Private Server</h1>
-            <p>Explore the universe of Growtopia with our premium private server. Experience 99.9% uptime, anti-lag technology, and DDoS protection. Discover 7000+ custom items and exclusive features in our high-performance galactic server.</p>
-            <a href="#host" class="btn btn-primary floating">Launch Now <i class="fas fa-arrow-down"></i></a>
+            <h1><strong>Growdie Private Server</strong></h1>
+            <p><strong>Experience Growtopia like never before with our high-performance private server and strong Server Security Anti DDoS. Enjoy 99.9% uptime, 7000+ custom items, and exclusive features in a lag-free environment.</strong></p>
+            <a href="#host" class="btn btn-primary floating">Get Started! <i class="fas fa-rocket"></i></a>
         </div>
     </section>
 
-    <!-- Home Section -->
+    <!-- Content Section -->
     <section class="section">
         <div class="container">
-            <div class="home-content">
-		<div class="banner-container">
-    <div class="slider-container">
-        <div class="slider">
-		<div class="slide">
+            <div class="banner-container">
+                <div class="slider-container">
+                    <div class="slider">
+                        <div class="slide">
                 <img src="welcome.png" alt="Growtopia Private Server 1">
             </div>
 		<div class="slide">
@@ -1116,190 +1047,217 @@
             </div>
             <div class="slide">
                 <img src="growdie3.png" alt="Growtopia Private Server 9">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <div class="content-text">
+                    <h3><strong>Welcome to Growdie</strong></h3>
+                    <p><strong>Growdie offers a premium Growtopia private server experience with enhanced features, custom items, and a stable gaming environment. Our servers are optimized for performance to ensure smooth gameplay.</p>
+                    <p>Whether you're a casual player or a dedicated builder, our server provides the tools and features to enhance your Growtopia experience.</strong></p>
+                    
+                    <div class="creators">
+                        <h4><strong>Created by:</strong></h4>
+                        <p><strong>@Agat, @Repp, @Miki, @Deva</strong></p>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-                <div class="home-text">
-                    <h3>Welcome to the Growdie Universe</h3>
-                    <p>Embark on an interstellar journey with our Growtopia Private Server. Experience premium gameplay with custom items and exclusive features, powered by our dedicated galactic servers for maximum performance.</p>
-                    <p>Whether you're exploring new worlds or building your own empire, our servers provide the stability and speed you need across the cosmos.</p>
-                    <p>With our space-grade infrastructure, enjoy minimal lag, warp-speed connections, and stellar uptime as you navigate the Growdie universe.</p>
-                    
-                    <h3>Growdie Creators</h3>
-                    <h4>@Agat, @Repp, @Miki, @Deva</h4>
-                </div>
     </section>
 
     <!-- Host Section -->
     <section class="section" id="host">
         <div class="container">
             <div class="section-title">
-                <h2>Growdie Host Link</h2>
-                <p>Connect to our Growdie servers using these Host link
+                <h2><strong>Growdie Host Links</strong></h2>
+                <p><strong>Connect to our server using the appropriate host for your device</strong></p>
             </div>
             
-            <div class="host-card">
-                <div class="host-info">
-                    <h3><i class="fab fa-windows"></i> Windows host</h3>
-                    <p>Establish connection with our main server using these IP hosts
-                    <div class="host-ip">
+            <div class="host-grid">
+                <div class="host-card">
+                    <div class="host-header">
+                        <i class="fab fa-windows host-icon"></i>
+                        <div class="host-info">
+                            <h3><strong>Windows Host</strong></h3>
+                        </div>
+                    </div>
+                    <p class="host-description"><strong>Connect from Windows devices using these host IPs</strong></p>
+                    <div class="host-ip"><strong>
                         159.223.41.154 www.growtopia1.com<br>
                         159.223.41.154 www.growtopia2.com
+                    </strong></div>
+                    <div class="host-status">
+                        <div class="status-dot"></div>
+                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
                     </div>
-                    <p><strong>Server status: <span style="color: var(--secondary); font-weight: 600;">ONLINE</span></strong></p>
+                    <div class="host-actions">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                    </div>
                 </div>
-                <div class="host-actions">
-                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
-                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
-                </div>
-            </div>
 
-            <div class="host-card">
-                <div class="host-info">
-                    <h3><i class="fab fa-apple"></i> iOS host</h3>
-                    <p>Access our server from Apple devices with this Surge 5 link
-                    <div class="host-ip">
+                <div class="host-card">
+                    <div class="host-header">
+                        <i class="fab fa-apple host-icon"></i>
+                        <div class="host-info">
+                            <h3><strong>iOS Host</strong></h3>
+                        </div>
+                    </div>
+                    <p class="host-description"><strong>Connect from Apple devices using this Surge 5 link</strong></p>
+                    <div class="host-ip"><strong>
                         https://ios.gtpshost.com/Growadsnewanjai
+                    </strong></div>
+                    <div class="host-status">
+                        <div class="status-dot"></div>
+                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
                     </div>
-                    <p><strong>Server status: <span style="color: var(--secondary); font-weight: 600;">ONLINE</span></strong></p>
+                    <div class="host-actions">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                    </div>
                 </div>
-                <div class="host-actions">
-                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
-                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
+
+                <div class="host-card">
+                    <div class="host-header">
+                        <i class="fab fa-android host-icon"></i>
+                        <div class="host-info">
+                            <h3><strong>Android Host</strong></h3>
+                        </div>
+                    </div>
+                    <p class="host-description"><strong>Connect from Android devices using this Powertunnel link</strong></p>
+                    <div class="host-ip"><strong>
+                        https://gtpshost.com/Growadsnewanjai.txt
+                    </strong></div>
+                    <div class="host-status">
+                        <div class="status-dot"></div>
+                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
+                    </div>
+                    <div class="host-actions">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                    </div>
+                </div>
+
+                <div class="host-card">
+                    <div class="host-header">
+                        <i class="fas fa-file-alt host-icon"></i>
+                        <div class="host-info">
+                            <h3><strong>Download VHost</strong></h3>
+                        </div>
+                    </div>
+                    <p class="host-description"><strong>Download the complete host file for direct connection</strong></p>
+                    <div class="host-ip">
+			<p><strong>This Host Growdie.txt for Vhost User</strong></p>
+                    </div>
+                    <div class="host-status">
+                        <div class="status-dot"></div>
+                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
+                    </div>
+                    <div class="host-actions">
+                        <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
+                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                    </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="host-card">
-                <div class="host-info">
-                    <h3><i class="fab fa-android"></i> Android host</h3>
-                    <p>Connect your Android device with this Powertunnel link
-                    <div class="host-ip">
-                        https://gtpshost.com/Growadsnewanjai.txt
-                    </div>
-                    <p><strong>Server status: <span style="color: var(--secondary); font-weight: 600;">ONLINE</span></strong></p>
-                </div>
-                <div class="host-actions">
-                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
-                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
-                </div>
+    <!-- Testimonial Section -->
+    <section class="section testimonial-section">
+        <div class="container">
+            <div class="section-title">
+                <h2><strong>Player Testimonials</strong></h2>
+                <p><strong>What our community says about Growdie</strong></p>
             </div>
             
-            <div class="host-card">
-                <div class="host-info">
-                    <h3><i class="fas fa-file-alt"></i> Download VHost</h3>
-                    <p>Download the complete host file to establish a direct wormhole connection to our servers.</p>
-                    <p>Includes all necessary connection protocols.</p>
-			<p>Host link for VHost user</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Player" class="testimonial-avatar">
+                        <div class="testimonial-user">
+                            <h4>GalaxyExplorer</h4>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-content">
+                        "Growdie PS is by far the best private server I've played! The custom items are amazing and the server never lags. The admin team is super responsive too!"
+                    </p>
                 </div>
-                <div class="host-actions">
-                    <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
-                    <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn"><i class="fas fa-book"></i> Guide</a>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Player" class="testimonial-avatar">
+                        <div class="testimonial-user">
+                            <h4>StarryNight</h4>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-content">
+                        "I've been playing on Growdie for 6 months now and it keeps getting better. The community is great and the custom features make the game so much more fun!"
+                    </p>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Player" class="testimonial-avatar">
+                        <div class="testimonial-user">
+                            <h4>CosmicBuilder</h4>
+                            <div class="testimonial-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="testimonial-content">
+                        "The server performance is incredible - no lag even during big events. The VIP role is worth every penny with all the extra commands and features!"
+                    </p>
                 </div>
             </div>
         </div>
-
-	    <!-- Testimonial Section -->
-<section class="testimonial-section">
-  <div class="container">
-    <div class="section-title">
-      <h2>What Players Say</h2>
-      <p>Hear from our community of GTPS</p>
-    </div>
-    
-    <div class="testimonial-grid">
-      <!-- Testimonial 1 -->
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Player" class="testimonial-avatar">
-          <div class="testimonial-user">
-            <h4>GalaxyExplorer</h4>
-            <div class="testimonial-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="testimonial-content">
-          "Growdie PS is by far the best private server I've played! The custom items are amazing and the server never lags. The admin team is super responsive too!"
-        </p>
-      </div>
-      
-      <!-- Testimonial 2 -->
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Player" class="testimonial-avatar">
-          <div class="testimonial-user">
-            <h4>StarryNight</h4>
-            <div class="testimonial-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-        </div>
-        <p class="testimonial-content">
-          "I've been playing on Growdie for 6 months now and it keeps getting better. The community is great and the custom features make the game so much more fun!"
-        </p>
-      </div>
-      
-      <!-- Testimonial 3 -->
-      <div class="testimonial-card">
-        <div class="testimonial-header">
-          <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Player" class="testimonial-avatar">
-          <div class="testimonial-user">
-            <h4>CosmicBuilder</h4>
-            <div class="testimonial-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star-half-alt"></i>
-            </div>
-          </div>
-        </div>
-        <p class="testimonial-content">
-          "The server performance is incredible - no lag even during big events. The VIP role is worth every penny with all the extra commands and features!"
-        </p>
-      </div>
-    </div>
-  </div>
     </section>
 
     <!-- Price Role Section -->
     <section class="section" id="price">
         <div class="container">
             <div class="section-title">
-                <h2>Growdie Roles & Benefits</h2>
-                <p><strong>Starting from just Rp5.000!</strong></p>
-                <p>Unlock the full potential of the Growdie universe with these exclusive ranks and commands</p>
+                <h2><strong>Roles & Pricing</strong></h2>
+                <p><strong>Unlock exclusive features with our premium roles start from Rp5.000 !</strong></p>
             </div>
             
             <div class="pricing-grid">
-
-		<!-- Role 0 -->
-                <div class="price-card popular">
-                    <h3>Support</h3>
-                    <div class="price">Rp5.000 <span>/ $0.5</span></div>
+                <div class="price-card">
+                    <h3>@Support</h3>
+                    <div class="price">Rp5.000 <span><strong>/ USD $0.50</strong></span></div>
                     <ul class="price-features">
-                        <li>Supporter Access License</li>
-                        <li>Big Name title</li>
-                        <li>Low Budget</li>
-                        <li>Basic Experience</li>
-                        <li>Basic Support</li>
+                        <li><strong>Supporter Access License</strong></li>
+                        <li><strong>Big Name title</strong></li>
+                        <li><strong>Low Budget</strong></li>
+                        <li><strong>Basic Experience</strong></li>
+                        <li><strong>Basic Support</strong></li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-                <!-- Role 1 -->
-                <div class="price-card popular">
-                    <h3>VIP</h3>
-                    <div class="price">Rp10.000 <span>/ $1</span></div>
+                <div class="price-card">
+                    <h3>@VIP</h3>
+                    <div class="price">Rp10.000 <span><strong>/ USD $1.00</strong></span></div>
                     <ul class="price-features">
                         <li>VIP Access License</li>
                         <li>VIP Commands</li>
@@ -1307,13 +1265,12 @@
                         <li>Search User Access</li>
                         <li>Standard Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-		<!-- Role 1.5 -->
-                <div class="price-card popular">
-                    <h3>VIP+</h3>
-                    <div class="price">Rp15.000 <span>/ $1.5</span></div>
+                <div class="price-card">
+                    <h3>@VIP+</h3>
+                    <div class="price">Rp15.000 <span><strong>/ USD $1.50</strong></span></div>
                     <ul class="price-features">
                         <li>VIP+ Access License</li>
                         <li>VIP+ Commands</li>
@@ -1321,13 +1278,12 @@
                         <li>Search User Access</li>
                         <li>VIP Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
                 
-                <!-- Role 2 -->
-                <div class="price-card popular">
-                    <h3>Moderator</h3>
-                    <div class="price">Rp25.000 <span>/ $2</span></div>
+                <div class="price-card">
+                    <h3>@Moderator</h3>
+                    <div class="price">Rp25.000 <span><strong>/ USD $2.00</strong></span></div>
                     <ul class="price-features">
                         <li>Security Server Access</li>
                         <li>Ghost Mode Feature</li>
@@ -1335,13 +1291,13 @@
                         <li>Access to Nuked Worlds</li>
                         <li>Priority Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
                 
-                <!-- Role 3 (Popular) -->
                 <div class="price-card popular">
-                    <h3>Administrator</h3>
-                    <div class="price">Rp45.000 <span>/ $4</span></div>
+                    <div class="popular-tag">Disc 15%</div>
+                    <h3>@Administrator</h3>
+                    <div class="price">Rp45.000 <span><strong>/ USD $4.00</strong></span></div>
                     <ul class="price-features">
                         <li>Check ID Items License</li>
                         <li>Change Nickname Command</li>
@@ -1349,13 +1305,13 @@
                         <li>Premium World Access</li>
                         <li>Admin Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
                 
-                <!-- Role 4 -->
                 <div class="price-card popular">
-                    <h3>Developer</h3>
-                    <div class="price">Rp60.000 <span>/ $5</span></div>
+                    <div class="popular-tag">Disc 20%</div>
+                    <h3>@Developer</h3>
+                    <div class="price">Rp60.000 <span><strong>/ USD $5.00</strong></span></div>
                     <ul class="price-features">
                         <li>Advanced Permissions</li>
                         <li>Global Message Access</li>
@@ -1363,13 +1319,13 @@
                         <li>Blacklist Player License</li>
                         <li>Developer Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
                 
-                <!-- Role 5 -->
                 <div class="price-card popular">
-                    <h3>GOD</h3>
-                    <div class="price">Rp70.000 <span>/ $7</span></div>
+		<div class="popular-tag">UNLIMITED</div>
+                    <h3>@GOD</h3>
+                    <div class="price">Rp70.000 <span><strong>/ USD $7.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Role Access</li>
                         <li>Free Unlimited Items</li>
@@ -1377,13 +1333,12 @@
                         <li>World Management</li>
                         <li>Full World Access</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
                 
-                <!-- Role 6 -->
-                <div class="price-card popular">
-                    <h3>Legendary</h3>
-                    <div class="price">Rp90.000 <span>/ $9</span></div>
+                <div class="price-card">
+                    <h3>@Legendary</h3>
+                    <div class="price">Rp90.000 <span><strong>/ USD $9.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1391,13 +1346,13 @@
                         <li>Server Configuration</li>
                         <li>Stars Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+
                 </div>
 
-		<!-- Role 7 -->
-                <div class="price-card popular">
-                    <h3>Royalboy</h3>
-                    <div class="price">Rp105.000 <span>/ $9</span></div>
+                <div class="price-card">
+                    <h3>@Royalboy</h3>
+                    <div class="price">Rp105.000 <span><strong>/ USD $10.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1408,10 +1363,10 @@
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-		<!-- Role 8 -->
                 <div class="price-card popular">
-                    <h3>Custom Role</h3>
-                    <div class="price">Rp120.000 <span>/ $11</span></div>
+		<div class="popular-tag">CUSTOM</div>
+                    <h3>@Custom Role</h3>
+                    <div class="price">Rp120.000 <span><strong>/ USD $12.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1422,74 +1377,76 @@
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-		<!-- Role 9 -->
-                <div class="price-card popular">
-                    <h3>Regressor</h3>
-                    <div class="price">Rp180.000 <span>/ $13</span></div>
+                <div class="price-card">
+                    <h3>@Regressor</h3>
+                    <div class="price">Rp180.000 <span><strong>/ USD $14.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
                         <li>Unlimited Restock</li>
-                        <li>Get Custom Role Name</li>
+                        <li>High+ Role</li>
+			<li>Special Ability</li>
                         <li>Dedicated Support</li>
                     </ul>
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-		<!-- Role 10 -->
-                <div class="price-card popular">
-                    <h3>Akeong</h3>
-                    <div class="price">Rp220.000 <span>/ $15</span></div>
+                <div class="price-card">
+                    <h3>@Akeong</h3>
+                    <div class="price">Rp220.000 <span><strong>/ USD $16.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
                         <li>Unlimited Restock</li>
-                        <li>Get Custom Role Name</li>
+                        <li>High End Role</li>
+			<li>Special Ability</li>
                         <li>Exclusive Support</li>
                     </ul>
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-		<!-- Role 11 -->
                 <div class="price-card popular">
-                    <h3>Richboy</h3>
-                    <div class="price">Rp400.000 <span>/ $25</span></div>
+		<div class="popular-tag">SPECIAL</div>
+                    <h3>@Richboy</h3>
+                    <div class="price">Rp410.000 <span><strong>/ USD $25.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
                         <li>Unlimited Restock</li>
-                        <li>Get Custom Role Name</li>
+                        <li>Flagship Role</li>
+			<li>Special Ability</li>
                         <li>Exclusive Support</li>
                     </ul>
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
-		<!-- Role 12 -->
-                <div class="price-card popular">
-                    <h3>Hades</h3>
-                    <div class="price">Rp700.000 <span>/ $40</span></div>
+                <div class="price-card">
+                    <h3>@Hades</h3>
+                    <div class="price">Rp700.000 <span><strong>/ USD $40.00</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
                         <li>Unlimited Restock</li>
-                        <li>Get Custom Role Name</li>
+                        <li>Flagship Role</li>
+			<li>Special Ability</li>
                         <li>Exclusive Support</li>
                     </ul>
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
 
 
-                <!-- Role 13 -->
                 <div class="price-card popular">
-                    <h3>Heaven</h3>
-                    <div class="price">Rp800.000 <span>/ $45</span></div>
+		<div class="popular-tag">LIMITED !</div>
+                    <h3>@Heaven</h3>
+                    <div class="price">Rp810.000 <span><strong>/ USD $50.00</strong></span></div>
                     <ul class="price-features">
                         <li>Full Server Control</li>
                         <li>All Commands Unlocked</li>
-                        <li>Complete Permissions</li>
+                        <li>All Access Permissions</li>
 			<li>All Unlimited</li>
                         <li>Event Management</li>
-                        <li>Exclusive Slot</li>
+                        <li>Give Rank & Assets Fiture</li>
+                        <li>Exclusive Role Limited Slot</li>
                     </ul>
                     <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
                 </div>
@@ -1497,29 +1454,102 @@
         </div>
     </section>
 
+<!-- Accepted Payment Section -->
+<section class="section payment-section">
+    <div class="container">
+        <div class="section-title">
+            <h2><strong>Accepted Payment</strong></h2>
+            <p><strong>We accept various payment methods for your convenience</strong></p>
+        </div>
+        
+        <div class="payment-slider">
+            <div class="payment-track">
+                <div class="payment-item">
+                    <img src="dana.png" alt="DANA">
+                    <span>DANA</span>
+                </div>
+                <div class="payment-item">
+                    <img src="ovo.png" alt="OVO">
+                    <span>OVO</span>
+                </div>
+                <div class="payment-item">
+                    <img src="gopay.webp" alt="Gopay">
+                    <span>Gopay</span>
+                </div>
+                <div class="payment-item">
+                    <img src="linkaja.png" alt="Link Aja">
+                    <span>Link Aja</span>
+                </div>
+                <div class="payment-item">
+                    <img src="bri.png" alt="BRI">
+                    <span>BRI</span>
+                </div>
+                <div class="payment-item">
+                    <img src="bca.png" alt="BCA">
+                    <span>BCA</span>
+                </div>
+		<div class="payment-item">
+                    <img src="bni.webp" alt="BCA">
+                    <span>BNI</span>
+                </div>
+                <div class="payment-item">
+                    <img src="danamon.webp" alt="Danamon">
+                    <span>Danamon</span>
+                </div>
+                <div class="payment-item">
+                    <img src="seabank.png" alt="Seabank">
+                    <span>Seabank</span>
+                </div>
+                <div class="payment-item">
+                    <img src="bankjago.png" alt="Bank Jago">
+                    <span>Bank Jago</span>
+                </div>
+                <div class="payment-item">
+                    <img src="qris.png" alt="QRIS">
+                    <span>QRIS</span>
+                </div>
+                <div class="payment-item">
+                    <img src="spay.png" alt="ShopeePay">
+                    <span>ShopeePay</span>
+                </div>
+                <div class="payment-item">
+                    <img src="paypal.png" alt="PayPal">
+                    <span>PayPal</span>
+                </div>
+                <div class="payment-item">
+                    <img src="binance.png" alt="Binance">
+                    <span>Binance</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
     <!-- Footer -->
     <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>About Growdie</h3>
-                    <p>Premium Private Server hosting with an enhanced Growtopia experience custom features and reliable performance with galactic-scale performance and exclusive features.</p>
+                    <h3><strong>About Growdie</strong></h3>
+                    <p><strong>Premium Growtopia private server with enhanced features, custom items, and reliable performance for the best gaming experience.</strong></p>
                     <div class="social-links">
                         <a href="https://discord.gg/YrCRVeYcVv"><i class="fab fa-discord"></i></a>
                         <a href="https://chat.whatsapp.com/IWZGGLW8zrxDHipGlyyoSB"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
+                    <h3><strong>Quick Links</strong></h3>
+                    <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#host">Server Host</a></li>
                         <li><a href="#price">Roles & Pricing</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h3>Support</h3>
-                    <ul>
+                    <h3><strong>Support</strong></h3>
+                    <ul class="footer-links">
                         <li><a href="https://wa.me/6283839531800">Contact Us</a></li>
                         <li><a href="#">Terms of Service</a></li>
                         <li><a href="#">Privacy Policy</a></li>
@@ -1528,7 +1558,7 @@
                 </div>
             </div>
             <div class="copyright">
-                <p>&copy; 2025 Growdie Galactic Server. All rights reserved.</p>
+                <p><strong>&copy; 2025 Growdie Private Server. All rights reserved.</strong></p>
             </div>
         </div>
     </footer>
@@ -1542,22 +1572,6 @@
             navLinks.classList.toggle('active');
             menuToggle.querySelector('i').classList.toggle('fa-times');
         });
-
-	// Slider functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const slider = document.querySelector('.slider');
-    const slides = document.querySelectorAll('.slide');
-    let currentIndex = 0;
-    const slideCount = slides.length;
-    
-    if (slider && slideCount > 1) {
-        // Auto slide every 5 seconds
-        setInterval(() => {
-            currentIndex = (currentIndex + 1) % slideCount;
-            slider.style.transform = `translateX(-${currentIndex * (100 / slideCount)}%)`;
-        }, 5000);
-    }
-});
 
         // Close menu when clicking a link
         document.querySelectorAll('.nav-links a').forEach(link => {
@@ -1584,48 +1598,68 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
 
+	// Slider functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.querySelector('.slider');
+    const slides = document.querySelectorAll('.slide');
+    let currentIndex = 0;
+    const slideCount = slides.length;
+    
+    if (slider && slideCount > 1) {
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % slideCount;
+            slider.style.transform = `translateX(-${currentIndex * (100 / slideCount)}%)`;
+        }, 5000);
+    }
+});
+
         // Copy notification function
         function showCopyNotification(message) {
-            const existing = document.querySelector('.copy-notification');
-            if (existing) existing.remove();
-
             const notification = document.createElement('div');
             notification.className = 'copy-notification';
             notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
             document.body.appendChild(notification);
-
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 10);
+            
             setTimeout(() => {
                 notification.style.animation = 'fadeOut 0.5s forwards';
                 setTimeout(() => notification.remove(), 500);
             }, 1500);
         }
 
-        // Copy host IP functionality
-        document.querySelectorAll('.btn-primary:not(.price-card .btn-primary)').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-        
-            const hostCard = this.closest('.host-card');
-            if (!hostCard) return;
-        
-            const hostIpElement = hostCard.querySelector('.host-ip');
-            if (!hostIpElement) return;
-        
-            let textToCopy = hostIpElement.textContent.trim();
-        
-            if (hostCard.querySelector('h3').textContent.includes('Windows')) {
-                    textToCopy = textToCopy.replace(/\s+/g, ' '); 
-            }
-        
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                showCopyNotification('Copied!');
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                showCopyNotification('Failed to copy. Please try again or copy manually.');
-            });
-        });
-    });
 
+        // Copy host IP functionality
+        document.querySelectorAll('.host-actions .btn-primary').forEach(button => {
+            if (button.textContent.includes('Copy')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const hostCard = this.closest('.host-card');
+                    if (!hostCard) return;
+                    
+                    const hostIpElement = hostCard.querySelector('.host-ip');
+                    if (!hostIpElement) return;
+                    
+                    let textToCopy = hostIpElement.textContent.trim();
+                    
+                    // For Windows host, clean up the text
+                    if (hostCard.querySelector('h3').textContent.includes('Windows')) {
+                        textToCopy = textToCopy.replace(/\s+/g, ' ');
+                    }
+                    
+                    navigator.clipboard.writeText(textToCopy).then(() => {
+                        showCopyNotification('Copied to clipboard!');
+                    }).catch(err => {
+                        console.error('Failed to copy text: ', err);
+                        showCopyNotification('Failed to copy. Please try again.');
+                    });
+                });
+            }
+        });
 
         // Download host file functionality
         document.querySelectorAll('.host-actions .btn-primary').forEach(button => {
@@ -1640,62 +1674,81 @@ document.addEventListener('DOMContentLoaded', function() {
 159.223.41.154 www.growtopia1.com
 159.223.41.154 www.growtopia2.com
 159.223.41.154 RvLnd.here`;
+                    
                     const blob = new Blob([fileContent], { type: 'text/plain' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = 'growdienew.txt';
+                    a.download = 'growdie_hosts.txt';
                     document.body.appendChild(a);
                     a.click();
+                    
                     setTimeout(() => {
                         document.body.removeChild(a);
                         URL.revokeObjectURL(url);
                         delete button.dataset.downloading;
-                        showCopyNotification('Downloaded!');
+                        showCopyNotification('Download started!');
                     }, 100);
                 });
             }
         });
 
-        // Add floating animation to price cards on hover
-        document.querySelectorAll('.price-card').forEach(card => {
+        // Add hover effect to cards
+        document.querySelectorAll('.host-card, .testimonial-card, .price-card').forEach(card => {
             card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px)';
+                card.style.transform = 'translateY(-5px)';
             });
             card.addEventListener('mouseleave', () => {
                 card.style.transform = 'translateY(0)';
             });
         });
+// Payment slider infinite loop
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentTrack = document.querySelector('.payment-track');
+    const paymentItems = document.querySelectorAll('.payment-item');
+    
+    if (paymentTrack && paymentItems.length > 0) {
+        // Clone all payment items and append to track for seamless looping
+        paymentItems.forEach(item => {
+            const clone = item.cloneNode(true);
+            paymentTrack.appendChild(clone);
+        });
 
-        // Add starry background animation
-        function createStars() {
-            const starsContainer = document.createElement('div');
-            starsContainer.style.position = 'fixed';
-            starsContainer.style.top = '0';
-            starsContainer.style.left = '0';
-            starsContainer.style.width = '100%';
-            starsContainer.style.height = '100%';
-            starsContainer.style.pointerEvents = 'none';
-            starsContainer.style.zIndex = '1';
-            document.body.appendChild(starsContainer);
-
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.style.position = 'absolute';
-                star.style.width = `${Math.random() * 3}px`;
-                star.style.height = star.style.width;
-                star.style.backgroundColor = 'white';
-                star.style.borderRadius = '50%';
-                star.style.opacity = '0.8';
-                star.style.top = `${Math.random() * 100}%`;
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.animation = `twinkle ${2 + Math.random() * 3}s infinite alternate`;
-                starsContainer.appendChild(star);
-            }
+        let animation;
+        
+        function startAnimation() {
+            let position = 0;
+            const itemWidth = paymentItems[0].offsetWidth + 20; // width + gap
+            const totalWidth = itemWidth * paymentItems.length;
+            
+            animation = setInterval(() => {
+                position -= 1;
+                
+                // Reset position when half of cloned items have scrolled
+                if (position <= -totalWidth) {
+                    position = 0;
+                    paymentTrack.style.transition = 'none';
+                    paymentTrack.style.transform = `translateX(${position}px)`;
+                    // Force reflow
+                    void paymentTrack.offsetWidth;
+                }
+                
+                paymentTrack.style.transition = 'transform 0.1s linear';
+                paymentTrack.style.transform = `translateX(${position}px)`;
+            }, 30);
         }
-
-        // Initialize stars
-        createStars();
+        
+        function stopAnimation() {
+            clearInterval(animation);
+        }
+        
+        // Pause on hover
+        paymentTrack.addEventListener('mouseenter', stopAnimation);
+        paymentTrack.addEventListener('mouseleave', startAnimation);
+        
+        startAnimation();
+    }
+});
     </script>
 </body>
 </html>
