@@ -1796,7 +1796,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             navigator.clipboard.writeText(textToCopy).then(() => {
-                showCopyNotification('Copied Host to Clipboard!'); 
+                showCopyNotification('Copied to clipboard!'); 
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
                 showCopyNotification('Failed to copy. Please try again.');
