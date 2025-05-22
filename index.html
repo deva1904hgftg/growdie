@@ -1796,7 +1796,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             navigator.clipboard.writeText(textToCopy).then(() => {
-                showCopyNotification('Copied to the Clipboard!'); 
+                showCopyNotification('Copied Host to Clipboard!'); 
             }).catch(err => {
                 console.error('Failed to copy text: ', err);
                 showCopyNotification('Failed to copy. Please try again.');
@@ -1831,7 +1831,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
                 delete button.dataset.downloading;
-                showCopyNotification('Successfully Downloaded!'); 
+                showCopyNotification('Host Downloaded!'); 
             }, 100);
         });
     }
