@@ -17,7 +17,7 @@
         :root {
             --primary: #4a6bff; /* Modern blue */
             --primary-dark: #3a56cc;
-            --secondary: #00c9a7; /* Teal */
+            --secondary: #00bfc9; /* Teal */
             --accent: #845ec2; /* Purple */
             --dark: #0f172a; /* Deep blue-gray */
             --darker: #0a101f;
@@ -380,7 +380,7 @@
         /* Host Cards */
         .host-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 25px;
         }
 
@@ -452,6 +452,12 @@
             font-size: 14px;
         }
 
+        .host-grid-guide {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
         .status-dot {
             width: 10px;
             height: 10px;
@@ -478,6 +484,23 @@
             padding: 10px;
             font-size: 14px;
         }
+
+        .host-description ol {
+    padding-left: 20px;
+    color: var(--gray);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.host-description ol li {
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.host-description ol li::marker {
+    color: var(--primary);
+    font-weight: bold;
+}
 
         /* Testimonials */
         .testimonial-section {
@@ -593,8 +616,8 @@
         }
 
         .price {
-            font-size: 34px;
-            font-weight: 700;
+            font-size: 33px;
+            font-weight: 800;
             margin-bottom: 20px;
             color: var(--light);
             position: relative;
@@ -646,69 +669,69 @@
             border-bottom: none;
         }
 
-.payment-section {
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(8px);
-    }
+        .payment-section {
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
+    position: relative;
+        }
+
+        .payment-slider {
+            width: 100%;
+            padding: 20px 0;
+        }
+
+        .payment-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            will-change: transform;
+        }
+
+        .payment-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex-shrink: 0;
+            justify-content: center;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 15px;
+            width: 120px;
+            border: 1px solid var(--card-border);
+            transition: var(--transition);
+        }
     
-    .payment-slider {
-        width: 100%;
-        overflow: hidden;
-        position: relative;
-    }
+        .payment-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(74, 107, 255, 0.2);
+            border-color: var(--primary);
+        }
     
-    .payment-track {
-        display: flex;
-        gap: 20px;
-        animation: scroll 30s linear infinite;
-        width: max-content;
-	will-change: transform;
-    }
+        .payment-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            filter: grayscale(30%);
+            transition: var(--transition);
+        }
     
-    .payment-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-	flex-shrink: 0;
-        justify-content: center;
-        background: var(--card-bg);
-        border-radius: 8px;
-        padding: 15px;
-        min-width: 120px;
-        border: 1px solid var(--card-border);
-        transition: var(--transition);
-    }
+        .payment-item:hover img {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }   
     
-    .payment-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(74, 107, 255, 0.2);
-        border-color: var(--primary);
-    }
+        .payment-item span {
+            font-size: 12px;
+            color: var(--gray);
+            font-weight: 500;
+        }
     
-    .payment-item img {
-        width: 40px;
-        height: 40px;
-        object-fit: contain;
-        margin-bottom: 10px;
-        filter: grayscale(30%);
-        transition: var(--transition);
-    }
-    
-    .payment-item:hover img {
-        filter: grayscale(0%);
-        transform: scale(1.1);
-    }
-    
-    .payment-item span {
-        font-size: 12px;
-        color: var(--gray);
-        font-weight: 500;
-    }
-    
-    @keyframes scroll {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(calc(-250px * 6.5)); }
-    }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(calc(-250px * 6.5)); }
+        }
 
         /* Footer */
         footer {
@@ -836,6 +859,10 @@
             gap: 8px;
             opacity: 0;
             transition: opacity 0.3s ease;
+            max-width: 90%; 
+            white-space: nowrap;
+            min-width: 120px;
+            text-align: center;
         }
 
         .copy-notification::after {
@@ -894,8 +921,7 @@
 
 	    .slider-container {
        	 	padding-bottom: 30%;
-	    }
-
+	        }
         }
 
         @media (max-width: 768px) {
@@ -956,7 +982,19 @@
                 width: 100%;
             }
 
-	    .slider-container {
+            .host-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .copy-notification {
+                white-space: normal;
+                min-width: 200px; 
+                max-width: 90vw; 
+                padding: 12px 15px; 
+                word-break: break-word; 
+            }
+
+	        .slider-container {
         	padding-bottom: 50%; 
             }
 	}
@@ -997,6 +1035,8 @@
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#host">Server Host</a></li>
+                    <li><a href="#guide">Guide</a></li>
+                    <li><a href="#testimoni">Testimoni</a></li>
                     <li><a href="#price">Roles & Pricing</a></li>
                 </ul>
                 <div class="menu-toggle">
@@ -1068,104 +1108,187 @@
     </section>
 
     <!-- Host Section -->
-    <section class="section" id="host">
-        <div class="container">
-            <div class="section-title">
-                <h2><strong>Growdie Host Links</strong></h2>
-                <p><strong>Connect to our server using the appropriate host for your device</strong></p>
+<section class="section" id="host">
+    <div class="container">
+        <div class="section-title">
+            <h2><strong>Growdie Host Links</strong></h2>
+            <p><strong>Connect to our server using the appropriate host for your device</strong></p>
+        </div>
+        
+        <div class="host-grid">
+            <!-- Row 1 -->
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fab fa-windows host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>Windows Host</strong></h3>
+                    </div>
+                </div>
+                <p class="host-description"><strong>Connect from Windows devices using these host IPs</strong></p>
+                <div class="host-ip">
+                    159.223.41.154 www.growtopia1.com<br>
+                    159.223.41.154 www.growtopia2.com
+                </div>
+                <div class="host-status">
+                    <div class="status-dot"></div>
+                    <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                    <a href="#guide" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                </div>
             </div>
-            
-            <div class="host-grid">
-                <div class="host-card">
-                    <div class="host-header">
-                        <i class="fab fa-windows host-icon"></i>
-                        <div class="host-info">
-                            <h3><strong>Windows Host</strong></h3>
-                        </div>
-                    </div>
-                    <p class="host-description"><strong>Connect from Windows devices using these host IPs</strong></p>
-                    <div class="host-ip">
-                        159.223.41.154 www.growtopia1.com<br>
-                        159.223.41.154 www.growtopia2.com
-                    </div>
-                    <div class="host-status">
-                        <div class="status-dot"></div>
-                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
-                    </div>
-                    <div class="host-actions">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
-                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fab fa-apple host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>iOS Host</strong></h3>
                     </div>
                 </div>
+                <p class="host-description"><strong>Connect from Apple devices using this Surge 5 link</strong></p>
+                <div class="host-ip">
+                    https://ios.gtpshost.com/Growadsnewanjai
+                </div>
+                <div class="host-status">
+                    <div class="status-dot"></div>
+                    <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                    <a href="#guide" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                </div>
+            </div>
 
-                <div class="host-card">
-                    <div class="host-header">
-                        <i class="fab fa-apple host-icon"></i>
-                        <div class="host-info">
-                            <h3><strong>iOS Host</strong></h3>
-                        </div>
-                    </div>
-                    <p class="host-description"><strong>Connect from Apple devices using this Surge 5 link</strong></p>
-                    <div class="host-ip">
-                        https://ios.gtpshost.com/Growadsnewanjai
-                    </div>
-                    <div class="host-status">
-                        <div class="status-dot"></div>
-                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
-                    </div>
-                    <div class="host-actions">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
-                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+            <!-- Row 2 -->
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fab fa-android host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>Android Host</strong></h3>
                     </div>
                 </div>
+                <p class="host-description"><strong>Connect from Android devices using this Powertunnel link</strong></p>
+                <div class="host-ip">
+                    https://gtpshost.com/Growadsnewanjai.txt
+                </div>
+                <div class="host-status">
+                    <div class="status-dot"></div>
+                    <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
+                    <a href="#guide" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+                </div>
+            </div>
 
-                <div class="host-card">
-                    <div class="host-header">
-                        <i class="fab fa-android host-icon"></i>
-                        <div class="host-info">
-                            <h3><strong>Android Host</strong></h3>
-                        </div>
-                    </div>
-                    <p class="host-description"><strong>Connect from Android devices using this Powertunnel link</strong></p>
-                    <div class="host-ip">
-                        https://gtpshost.com/Growadsnewanjai.txt
-                    </div>
-                    <div class="host-status">
-                        <div class="status-dot"></div>
-                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
-                    </div>
-                    <div class="host-actions">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-copy"></i> Copy</a>
-                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fas fa-file-alt host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>Download VHost</strong></h3>
                     </div>
                 </div>
-
-                <div class="host-card">
-                    <div class="host-header">
-                        <i class="fas fa-file-alt host-icon"></i>
-                        <div class="host-info">
-                            <h3><strong>Download VHost</strong></h3>
-                        </div>
-                    </div>
-                    <p class="host-description"><strong>Download the complete host file for direct connection</strong></p>
-                    <div class="host-ip">
-			<p>File growdie_hosts.txt</p>
-                    </div>
-                    <div class="host-status">
-                        <div class="status-dot"></div>
-                        <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
-                    </div>
-                    <div class="host-actions">
-                        <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
-                        <a href="https://download.gtpshost.com/Growadsnewanjai" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
-                    </div>
+                <p class="host-description"><strong>Download the complete host file for direct connection</strong></p>
+                <div class="host-ip">
+                    <p>File growdie_hosts.txt</p>
+                </div>
+                <div class="host-status">
+                    <div class="status-dot"></div>
+                    <p><strong>Server status : <span style="color: var(--secondary); font-weight: 600;">Online</span></strong></p>
+                </div>
+                <div class="host-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-download"></i> Download</a>
+                    <a href="#guide" class="btn btn-outline"><i class="fas fa-book"></i> Guide</a>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
+    <!-- Guide Section -->
+<section class="section" id="guide">
+    <div class="container">
+        <div class="section-title">
+            <h2><strong>How to Play Guide</strong></h2>
+            <p><strong>Step-by-step instructions to connect to our server</strong></p>
+        </div>
+        
+        <div class="host-grid-guide">
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fab fa-windows host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>Windows Guide</strong></h3>
+                    </div>
+                </div>
+                <div class="host-description">
+                    <ol>
+                        <li>Copy the host IP above</li>
+                        <li>Open Notepad as Administrator</li>
+                        <li>Go to: C:\Windows\System32\drivers\etc</li>
+                        <li>Open "hosts" file</li>
+                        <li>Paste the IP at the bottom</li>
+                        <li>Save as the file</li>
+                        <li>Open Growtopia</li>
+                    </ol>
+                </div>
+                <div class="host-actions">
+                    <a href="#host" class="btn btn-primary">Go to Host Links <i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fab fa-apple host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>iOS Guide</strong></h3>
+                    </div>
+                </div>
+                <div class="host-description">
+                    <ol>
+                        <li>Install Surge 5 from App Store</li>
+                        <li>Open the app</li>
+                        <li>Tap "Add Configuration from URL"</li>
+                        <li>Paste the Surge link above</li>
+                        <li>Tap "Done"</li>
+                        <li>Enable the configuration</li>
+                        <li>Open Growtopia</li>
+                    </ol>
+                </div>
+                <div class="host-actions">
+                    <a href="#host" class="btn btn-primary">Go to Host Links <i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+
+            <div class="host-card">
+                <div class="host-header">
+                    <i class="fab fa-android host-icon"></i>
+                    <div class="host-info">
+                        <h3><strong>Android Guide</strong></h3>
+                    </div>
+                </div>
+                <div class="host-description">
+                    <ol>
+                        <li>Install PowerTunnel</li>
+                        <li>Open the app</li>
+                        <li>Go to "Hosts Sources"</li>
+                        <li>Add the URL above</li>
+                        <li>Enable "Use Hosts Sources"</li>
+                        <li>Tap "Start" button</li>
+                        <li>Open Growtopia</li>
+                    </ol>
+                </div>
+                <div class="host-actions">
+                    <a href="#host" class="btn btn-primary">Go to Host Links <i class="fas fa-arrow-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Testimonial Section -->
-    <section class="section testimonial-section">
+    <section class="section testimonial-section" id="testimoni">
         <div class="container">
             <div class="section-title">
                 <h2><strong>Player Testimonials</strong></h2>
@@ -1244,7 +1367,7 @@
             <div class="pricing-grid">
                 <div class="price-card">
                     <h3>@Support</h3>
-                    <div class="price">Rp5.000 <span><strong>/ USD $0.50</strong></span></div>
+                    <div class="price">Rp5.000 <span><strong>/ $0.50 USD</strong></span></div>
                     <ul class="price-features">
                         <li><strong>Supporter Access License</strong></li>
                         <li><strong>Big Name title</strong></li>
@@ -1252,25 +1375,25 @@
                         <li><strong>Basic Experience</strong></li>
                         <li><strong>Basic Support</strong></li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card">
                     <h3>@VIP</h3>
-                    <div class="price">Rp10.000 <span><strong>/ USD $1.00</strong></span></div>
+                    <div class="price">Rp10.000 <span><strong>/ $1.00 USD</strong></span></div>
                     <ul class="price-features">
-                        <li>VIP Access License</li>
-                        <li>VIP Commands</li>
+                        <li><strong>VIP Access License</strong></li>
+                        <li><strong>VIP Commands</strong></li>
                         <li>Auto Harvest Feature</li>
                         <li>Search User Access</li>
                         <li>Standard Support</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card">
                     <h3>@VIP+</h3>
-                    <div class="price">Rp15.000 <span><strong>/ USD $1.50</strong></span></div>
+                    <div class="price">Rp15.000 <span><strong>/ $1.50 USD</strong></span></div>
                     <ul class="price-features">
                         <li>VIP+ Access License</li>
                         <li>VIP+ Commands</li>
@@ -1278,12 +1401,12 @@
                         <li>Search User Access</li>
                         <li>VIP Support</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 
                 <div class="price-card">
                     <h3>@Moderator</h3>
-                    <div class="price">Rp25.000 <span><strong>/ USD $2.00</strong></span></div>
+                    <div class="price">Rp25.000 <span><strong>/ $2.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Security Server Access</li>
                         <li>Ghost Mode Feature</li>
@@ -1291,13 +1414,13 @@
                         <li>Access to Nuked Worlds</li>
                         <li>Priority Support</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 
                 <div class="price-card popular">
                     <div class="popular-tag">Disc 15%</div>
                     <h3>@Administrator</h3>
-                    <div class="price">Rp45.000 <span><strong>/ USD $4.00</strong></span></div>
+                    <div class="price">Rp45.000 <span><strong>/ $4.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Check ID Items License</li>
                         <li>Change Nickname Command</li>
@@ -1305,13 +1428,13 @@
                         <li>Premium World Access</li>
                         <li>Admin Support</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 
                 <div class="price-card popular">
                     <div class="popular-tag">Disc 20%</div>
                     <h3>@Developer</h3>
-                    <div class="price">Rp60.000 <span><strong>/ USD $5.00</strong></span></div>
+                    <div class="price">Rp60.000 <span><strong>/ $5.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Advanced Permissions</li>
                         <li>Global Message Access</li>
@@ -1319,13 +1442,13 @@
                         <li>Blacklist Player License</li>
                         <li>Developer Support</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 
                 <div class="price-card popular">
 		<div class="popular-tag">UNLIMITED</div>
                     <h3>@GOD</h3>
-                    <div class="price">Rp70.000 <span><strong>/ USD $7.00</strong></span></div>
+                    <div class="price">Rp70.000 <span><strong>/ $7.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Role Access</li>
                         <li>Free Unlimited Items</li>
@@ -1333,12 +1456,12 @@
                         <li>World Management</li>
                         <li>Full World Access</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
                 
                 <div class="price-card">
                     <h3>@Legendary</h3>
-                    <div class="price">Rp90.000 <span><strong>/ USD $9.00</strong></span></div>
+                    <div class="price">Rp90.000 <span><strong>/ $9.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1346,13 +1469,13 @@
                         <li>Server Configuration</li>
                         <li>Stars Support</li>
                     </ul>
-		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+		    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
 
                 </div>
 
                 <div class="price-card">
                     <h3>@Royalboy</h3>
-                    <div class="price">Rp105.000 <span><strong>/ USD $10.00</strong></span></div>
+                    <div class="price">Rp105.000 <span><strong>/ $10.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1360,26 +1483,27 @@
                         <li>Free Unlimited Items</li>
 			<li>Super Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card popular">
 		<div class="popular-tag">CUSTOM</div>
                     <h3>@Custom Role</h3>
-                    <div class="price">Rp120.000 <span><strong>/ USD $12.00</strong></span></div>
+                    <div class="price">Rp120.000 <span><strong>/ $12.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
                         <li>Unlimited Restock</li>
                         <li>Get Custom Role Name</li>
                         <li>Ultra Priority Support</li>
+                        <li>Most Wanted Role</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card">
                     <h3>@Regressor</h3>
-                    <div class="price">Rp180.000 <span><strong>/ USD $14.00</strong></span></div>
+                    <div class="price">Rp180.000 <span><strong>/ $14.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1388,12 +1512,12 @@
 			<li>Special Ability</li>
                         <li>Dedicated Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card">
                     <h3>@Akeong</h3>
-                    <div class="price">Rp220.000 <span><strong>/ USD $16.00</strong></span></div>
+                    <div class="price">Rp220.000 <span><strong>/ $16.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1402,13 +1526,13 @@
 			<li>Special Ability</li>
                         <li>Exclusive Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card popular">
-		<div class="popular-tag">SPECIAL</div>
+		<div class="popular-tag">Flagship</div>
                     <h3>@Richboy</h3>
-                    <div class="price">Rp410.000 <span><strong>/ USD $25.00</strong></span></div>
+                    <div class="price">Rp400.000 <span><strong>/ $25.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1417,12 +1541,12 @@
 			<li>Special Ability</li>
                         <li>Exclusive Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
                 <div class="price-card">
                     <h3>@Hades</h3>
-                    <div class="price">Rp700.000 <span><strong>/ USD $40.00</strong></span></div>
+                    <div class="price">Rp700.000 <span><strong>/ $40.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Unlimited Gems Access</li>
                         <li>Unlimited Level Access</li>
@@ -1431,14 +1555,14 @@
 			<li>Special Ability</li>
                         <li>Exclusive Support</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
 
 
                 <div class="price-card popular">
-		<div class="popular-tag">LIMITED !</div>
+		<div class="popular-tag">Limited !</div>
                     <h3>@Heaven</h3>
-                    <div class="price">Rp810.000 <span><strong>/ USD $50.00</strong></span></div>
+                    <div class="price">Rp800.000 <span><strong>/ $50.00 USD</strong></span></div>
                     <ul class="price-features">
                         <li>Full Server Control</li>
                         <li>All Commands Unlocked</li>
@@ -1448,7 +1572,7 @@
                         <li>Give Rank & Assets Fiture</li>
                         <li>Exclusive Role Limited Slot</li>
                     </ul>
-                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-chevron-right"></i></a>
+                    <a href="https://wa.me/6283839531800" class="btn btn-primary">Purchase this Role <i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -1542,9 +1666,11 @@
                 <div class="footer-column">
                     <h3><strong>Quick Links</strong></h3>
                     <ul class="footer-links">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#host">Server Host</a></li>
-                        <li><a href="#price">Roles & Pricing</a></li>
+                        <li><a href="#home">Home Page</a></li>
+                        <li><a href="#host">Server Host Links</a></li>
+                        <li><a href="#guide">Guide How to Connect</a></li>
+                        <li><a href="#testimoni">Testimoni Players</a></li>
+                        <li><a href="#price">Roles and Benefits</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -1620,78 +1746,96 @@ document.addEventListener('DOMContentLoaded', function() {
             notification.className = 'copy-notification';
             notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
             document.body.appendChild(notification);
-            
+    
+        // Hitung lebar notifikasi berdasarkan konten
+        const calculateWidth = () => {
+            const textWidth = notification.scrollWidth;
+            const maxWidth = window.innerWidth * 0.9; // Maksimal 90% lebar layar
+            const minWidth = 120; // Lebar minimum
+            const calculatedWidth = Math.min(Math.max(textWidth, minWidth), maxWidth);
+            notification.style.width = `${calculatedWidth}px`;
+        };
+    
+        calculateWidth();
+    
+        // Handle resize
+            const resizeObserver = new ResizeObserver(calculateWidth);
+            resizeObserver.observe(notification);
+    
             setTimeout(() => {
-                notification.classList.add('show');
-            }, 10);
-            
+            notification.classList.add('show');
+        }, 10);
+    
             setTimeout(() => {
-                notification.style.animation = 'fadeOut 0.5s forwards';
-                setTimeout(() => notification.remove(), 500);
-            }, 1500);
-        }
+            notification.style.animation = 'fadeOut 0.5s forwards';
+            setTimeout(() => {
+            notification.remove();
+            resizeObserver.disconnect();
+            }, 500);
+        }, 1500);
+    }
 
 
         // Copy host IP functionality
         document.querySelectorAll('.host-actions .btn-primary').forEach(button => {
-            if (button.textContent.includes('Copy')) {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const hostCard = this.closest('.host-card');
-                    if (!hostCard) return;
-                    
-                    const hostIpElement = hostCard.querySelector('.host-ip');
-                    if (!hostIpElement) return;
-                    
-                    let textToCopy = hostIpElement.textContent.trim();
-                    
-                    // For Windows host, clean up the text
-                    if (hostCard.querySelector('h3').textContent.includes('Windows')) {
-                        textToCopy = textToCopy.replace(/\s+/g, ' ');
-                    }
-                    
-                    navigator.clipboard.writeText(textToCopy).then(() => {
-                        showCopyNotification('Copied!');
-                    }).catch(err => {
-                        console.error('Failed to copy text: ', err);
-                        showCopyNotification('Failed to copy. Please try again.');
-                    });
-                });
+    if (button.textContent.includes('Copy')) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const hostCard = this.closest('.host-card');
+            if (!hostCard) return;
+            
+            const hostIpElement = hostCard.querySelector('.host-ip');
+            if (!hostIpElement) return;
+            
+            let textToCopy = hostIpElement.textContent.trim();
+            
+            // For Windows host, clean up the text
+            if (hostCard.querySelector('h3').textContent.includes('Windows')) {
+                textToCopy = textToCopy.replace(/\s+/g, ' ');
             }
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                showCopyNotification('Copied to the Clipboard!'); 
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                showCopyNotification('Failed to copy. Please try again.');
+            });
         });
+    }
+});
 
-        // Download host file functionality
-        document.querySelectorAll('.host-actions .btn-primary').forEach(button => {
-            if (button.textContent.includes('Download')) {
-                button.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    if (button.dataset.downloading) return;
-                    button.dataset.downloading = 'true';
+    // Download host file functionality 
+    document.querySelectorAll('.host-actions .btn-primary').forEach(button => {
+    if (button.textContent.includes('Download')) {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (button.dataset.downloading) return;
+            button.dataset.downloading = 'true';
 
-                    const fileContent = `159.223.41.154 growtopia1.com
+            const fileContent = `159.223.41.154 growtopia1.com
 159.223.41.154 growtopia2.com
 159.223.41.154 www.growtopia1.com
 159.223.41.154 www.growtopia2.com
 159.223.41.154 RvLnd.here`;
-                    
-                    const blob = new Blob([fileContent], { type: 'text/plain' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'growdie_hosts.txt';
-                    document.body.appendChild(a);
-                    a.click();
-                    
-                    setTimeout(() => {
-                        document.body.removeChild(a);
-                        URL.revokeObjectURL(url);
-                        delete button.dataset.downloading;
-                        showCopyNotification('Download started!');
-                    }, 100);
-                });
-            }
+            
+            const blob = new Blob([fileContent], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'growdie_hosts.txt';
+            document.body.appendChild(a);
+            a.click();
+            
+            setTimeout(() => {
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                delete button.dataset.downloading;
+                showCopyNotification('Successfully Downloaded!'); 
+            }, 100);
         });
+    }
+});
 
         // Add hover effect to cards
         document.querySelectorAll('.host-card, .testimonial-card, .price-card').forEach(card => {
@@ -1702,52 +1846,85 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.style.transform = 'translateY(0)';
             });
         });
-// Payment slider infinite loop
-document.addEventListener('DOMContentLoaded', function() {
-    const paymentTrack = document.querySelector('.payment-track');
-    const paymentItems = document.querySelectorAll('.payment-item');
-    
-    if (paymentTrack && paymentItems.length > 0) {
-        // Clone all payment items and append to track for seamless looping
-        paymentItems.forEach(item => {
-            const clone = item.cloneNode(true);
-            paymentTrack.appendChild(clone);
-        });
 
-        let animation;
+// Payment slider infinite loop - Improved version
+document.addEventListener('DOMContentLoaded', function() {
+    const paymentSlider = document.querySelector('.payment-slider');
+    const paymentTrack = document.querySelector('.payment-track');
+    
+    if (!paymentTrack || !paymentSlider) return;
+    
+    // Clone all payment items for seamless looping
+    const paymentItems = document.querySelectorAll('.payment-item');
+    paymentItems.forEach(item => {
+        const clone = item.cloneNode(true);
+        paymentTrack.appendChild(clone);
+    });
+    
+    const itemWidth = paymentItems[0].offsetWidth + 20; // width + gap
+    const totalWidth = itemWidth * paymentItems.length;
+    let animationId;
+    let position = 0;
+    let speed = 1; // pixels per frame (adjust for speed)
+    let lastTimestamp = 0;
+    
+    function animate(timestamp) {
+        if (!lastTimestamp) lastTimestamp = timestamp;
+        const deltaTime = timestamp - lastTimestamp;
+        lastTimestamp = timestamp;
         
-        function startAnimation() {
-            let position = 0;
-            const itemWidth = paymentItems[0].offsetWidth + 20; // width + gap
-            const totalWidth = itemWidth * paymentItems.length;
+        // Only update position every 16ms (~60fps)
+        if (deltaTime >= 16) {
+            position -= speed;
             
-            animation = setInterval(() => {
-                position -= 1;
-                
-                // Reset position when half of cloned items have scrolled
-                if (position <= -totalWidth) {
-                    position = 0;
-                    paymentTrack.style.transition = 'none';
-                    paymentTrack.style.transform = `translateX(${position}px)`;
-                    // Force reflow
-                    void paymentTrack.offsetWidth;
-                }
-                
-                paymentTrack.style.transition = 'transform 0.1s linear';
+            // Reset position when we've scrolled one full set of items
+            if (position <= -totalWidth) {
+                position = 0;
+                paymentTrack.style.transition = 'none';
                 paymentTrack.style.transform = `translateX(${position}px)`;
-            }, 30);
+                // Force reflow
+                void paymentTrack.offsetWidth;
+            }
+            
+            paymentTrack.style.transition = 'transform 0.1s linear';
+            paymentTrack.style.transform = `translateX(${position}px)`;
         }
         
-        function stopAnimation() {
-            clearInterval(animation);
-        }
-        
-        // Pause on hover
-        paymentTrack.addEventListener('mouseenter', stopAnimation);
-        paymentTrack.addEventListener('mouseleave', startAnimation);
-        
-        startAnimation();
+        animationId = requestAnimationFrame(animate);
     }
+    
+    function startAnimation() {
+        if (!animationId) {
+            lastTimestamp = 0;
+            animationId = requestAnimationFrame(animate);
+        }
+    }
+    
+    function stopAnimation() {
+        if (animationId) {
+            cancelAnimationFrame(animationId);
+            animationId = null;
+        }
+    }
+    
+    // Pause on hover
+    paymentSlider.addEventListener('mouseenter', stopAnimation);
+    paymentSlider.addEventListener('mouseleave', startAnimation);
+    
+    // Start initially
+    startAnimation();
+    
+    // Handle window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+            stopAnimation();
+            position = 0;
+            paymentTrack.style.transform = 'translateX(0)';
+            startAnimation();
+        }, 100);
+    });
 });
     </script>
 </body>
