@@ -1864,11 +1864,11 @@ document.addEventListener('DOMContentLoaded', function() {
         paymentTrack.appendChild(clone);
     });
     
-    const itemWidth = paymentItems[0].offsetWidth + 20; // width + gap
+    const itemWidth = paymentItems[0].offsetWidth + 20;
     const totalWidth = itemWidth * paymentItems.length;
     let animationId;
     let position = 0;
-    let speed = 1; // pixels per frame (adjust for speed)
+    let speed = 1;
     let lastTimestamp = 0;
     
     function animate(timestamp) {
@@ -1876,16 +1876,13 @@ document.addEventListener('DOMContentLoaded', function() {
         const deltaTime = timestamp - lastTimestamp;
         lastTimestamp = timestamp;
         
-        // Only update position every 16ms (~60fps)
         if (deltaTime >= 16) {
             position -= speed;
             
-            // Reset position when we've scrolled one full set of items
             if (position <= -totalWidth) {
                 position = 0;
                 paymentTrack.style.transition = 'none';
                 paymentTrack.style.transform = `translateX(${position}px)`;
-                // Force reflow
                 void paymentTrack.offsetWidth;
             }
             
@@ -1896,38 +1893,8 @@ document.addEventListener('DOMContentLoaded', function() {
         animationId = requestAnimationFrame(animate);
     }
     
-    function startAnimation() {
-        if (!animationId) {
-            lastTimestamp = 0;
-            animationId = requestAnimationFrame(animate);
-        }
-    }
-    
-    function stopAnimation() {
-        if (animationId) {
-            cancelAnimationFrame(animationId);
-            animationId = null;
-        }
-    }
-    
-    // Pause on hover
-    paymentSlider.addEventListener('mouseenter', stopAnimation);
-    paymentSlider.addEventListener('mouseleave', startAnimation);
-    
-    // Start initially
-    startAnimation();
-    
-    // Handle window resize
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            stopAnimation();
-            position = 0;
-            paymentTrack.style.transform = 'translateX(0)';
-            startAnimation();
-        }, 100);
-    });
+    // Start animation immediately and never stop
+    animationId = requestAnimationFrame(animate);
 });
     </script>
 </body>
