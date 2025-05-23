@@ -1731,36 +1731,101 @@ document.addEventListener('DOMContentLoaded', function() {
     const slideCount = slides.length;
     let currentIndex = 0;
     let slideInterval;
-    
+    let isHovering = false;
+
     if (slider && slideCount > 1) {
+        // Clone first slide and append to end for seamless looping
+        const firstClone = slides[0].cloneNode(true);
+        slider.appendChild(firstClone);
+
+        // Update slide count
+        const totalSlides = slideCount + 1;
+
         function goToSlide(index) {
-            if (index < 0) index = slideCount - 1;
-            else if (index >= slideCount) index = 0;
-            
             currentIndex = index;
             slider.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-        
+
+        function nextSlide() {
+            if (currentIndex >= totalSlides - 1) {
+                // Jump to first slide without animation
+                slider.style.transition = 'none';
+                goToSlide(0);
+                // Force reflow
+                void slider.offsetWidth;
+                // Restore transition
+                slider.style.transition = 'transform 0.7s ease';
+            }
+            goToSlide(currentIndex + 1);
+        }
+
         function startSlider() {
             slideInterval = setInterval(() => {
-                goToSlide(currentIndex + 1);
+                if (!isHovering) {
+                    nextSlide();
+                }
             }, 5000);
         }
-        
+
+        // Start autoplay
         startSlider();
-        
+
+        // Pause on hover
         slider.addEventListener('mouseenter', () => {
+            isHovering = true;
             clearInterval(slideInterval);
         });
-        
-        slider.addEventListener('mouseleave', startSlider);
-        
-        window.addEventListener('resize', function() {
-            slider.style.transition = 'none';
-            slider.style.transform = `translateX(-${currentIndex * 100}%)`;
-            void slider.offsetWidth; // Trigger reflow
-            slider.style.transition = 'transform 0.7s ease';
+
+        slider.addEventListener('mouseleave', () => {
+            isHovering = false;
+            startSlider();
         });
+
+        // Handle window resize
+        function handleResize() {
+            slider.style.transition = 'none';
+            goToSlide(currentIndex);
+            void slider.offsetWidth;
+            slider.style.transition = 'transform 0.7s ease';
+        }
+
+        // Optimized resize handler
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(handleResize, 100);
+        });
+
+        // Touch support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        slider.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(slideInterval);
+        }, { passive: true });
+
+        slider.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startSlider();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (touchStartX - touchEndX > threshold) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > threshold) {
+                if (currentIndex <= 0) {
+                    // Jump to last slide
+                    slider.style.transition = 'none';
+                    goToSlide(totalSlides - 1);
+                    void slider.offsetWidth;
+                    slider.style.transition = 'transform 0.7s ease';
+                }
+                goToSlide(currentIndex - 1);
+            }
+        }
     }
 });
 
