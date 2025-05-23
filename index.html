@@ -304,28 +304,30 @@
 
         /* Slider Styles */
         .banner-container {
- 	   width: 100%;
+	    width: 100%;
 	    margin-bottom: 40px;
 	    border-radius: 12px;
 	    overflow: hidden;
 	    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-	    border: 1px solid var(--card-border);
-	    transition: var(--transition);
-	    aspect-ratio: 45%;
+ 	    border: 1px solid var(--card-border);
+	    position: relative;
 	}
 
 	.slider-container {
 	    width: 100%;
-	    height: auto;
+	    padding-bottom: 45%;
 	    position: relative;
 	    overflow: hidden;
 	    border-radius: 12px;
 	}
 
 	.slider {
-	    display: flex;
+	    position: absolute;
+	    top: 0;
+	    left: 0;
 	    width: 100%;
 	    height: 100%;
+	    display: flex;
 	    transition: transform 0.7s ease;
 	}
 
@@ -918,7 +920,7 @@
             }
 
 	    .slider-container {
-       	 	padding-bottom: 30%;
+       	 	padding-bottom: 40%;
 	        }
         }
 
@@ -968,16 +970,9 @@
                 font-size: 16px;
             }
 
-            .banner-container {
-   		aspect-ratio: 40%;
- 		margin-bottom: 30px;
-  		border-radius: 8px;
- 	   }
-    
-	    .slider-container {
-	        border-radius: 8px;
+            .slider-container {
+	        padding-bottom: 40%; 
 	    }
-	}
 
             .host-actions {
                 flex-direction: column;
@@ -1019,8 +1014,8 @@
             }
             
             .slider-container {
-                padding-bottom: 80%;
-            }
+	        padding-bottom: 40%; 
+	    }
 
             .price {
                 font-size: 32px;
